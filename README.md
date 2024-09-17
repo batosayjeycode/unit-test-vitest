@@ -6,6 +6,9 @@ Some unit test code using Vitest.
 
 ### Install
 
+Rename this file first :
+`env-local.txt to .env`
+
 ```
 npm install
 ```
