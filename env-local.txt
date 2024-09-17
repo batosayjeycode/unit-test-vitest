@@ -1,0 +1,6 @@
+# JARVIS_ENV = "PROD|UAT|LOCAL"
+JARVIS_ENV = "LOCAL"
+JARVIS_TOKEN = "JARVIS_TOKEN_HERE"
+JARVIS_DOMAIN_PROD = "https://jarvis-api.sociolla.info"
+JARVIS_DOMAIN_UAT = "https://uat-jarvis-api.sociolabs.io"
+JARVIS_DOMAIN_LOCAL = "http://localhost:8989"
