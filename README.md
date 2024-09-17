@@ -4,6 +4,12 @@
 
 Some unit test code using Vitest.
 
+### Install
+
+```
+npm install
+```
+
 ### Run
 
 ```
