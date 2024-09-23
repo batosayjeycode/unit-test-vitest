@@ -1,5 +1,5 @@
 import { expect, describe, it } from "vitest";
-const getData = require("./helpers");
+const Helpers = require("./helpers");
 
 describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales New All Order`, () => {
   describe(`[${process.env.JARVIS_ENV}] Filter Default`, () => {
@@ -9,7 +9,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales New All Order`, () => {
     it("Without Sort By Column", async ({ expect }) => {
       try {
         const data = { success: true };
-        const result = await getData(url);
+        const result = await Helpers.getDataFromAxios(url);
         expect(result).toMatchObject(data);
       } catch (e) {
         expect(e.message).toBe("Unable to fetch data all order");
@@ -33,7 +33,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales New All Order`, () => {
       "With Sort By Column: $sortByColumn -> $expected",
       async ({ sortByColumn, url, expected }) => {
         try {
-          const result = await getData(url);
+          const result = await Helpers.getDataFromAxios(url);
           expect(result).toMatchObject(expected);
         } catch (e) {
           expect(e.message).toBe(
@@ -51,7 +51,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales New All Order`, () => {
     it("Without Sort By Column", async ({ expect }) => {
       try {
         const data = { success: true };
-        const result = await getData(url);
+        const result = await Helpers.getDataFromAxios(url);
         expect(result).toMatchObject(data);
       } catch (e) {
         expect(e.message).toBe("Unable to fetch data all order");
@@ -75,7 +75,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales New All Order`, () => {
       "With Sort By Column: $sortByColumn -> $expected",
       async ({ sortByColumn, url, expected }) => {
         try {
-          const result = await getData(url);
+          const result = await Helpers.getDataFromAxios(url);
           expect(result).toMatchObject(expected);
         } catch (e) {
           expect(e.message).toBe(
@@ -93,7 +93,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales New All Order`, () => {
     it("Without Sort By Column", async ({ expect }) => {
       try {
         const data = { success: true };
-        const result = await getData(url);
+        const result = await Helpers.getDataFromAxios(url);
         expect(result).toMatchObject(data);
       } catch (e) {
         expect(e.message).toBe("Unable to fetch data all order");
@@ -117,7 +117,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales New All Order`, () => {
       "With Sort By Column: $sortByColumn -> $expected",
       async ({ sortByColumn, url, expected }) => {
         try {
-          const result = await getData(url);
+          const result = await Helpers.getDataFromAxios(url);
           expect(result).toMatchObject(expected);
         } catch (e) {
           expect(e.message).toBe(

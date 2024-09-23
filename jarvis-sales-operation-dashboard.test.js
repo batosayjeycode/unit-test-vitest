@@ -1,5 +1,5 @@
 import { expect, describe, it } from "vitest";
-const getData = require("./helpers");
+const Helpers = require("./helpers");
 
 const urlPlatform =
   "https://jarvis-api.sociolla.info/v2/sales-operation-dashboard/platform";
@@ -18,7 +18,7 @@ describe.only(`[${process.env.JARVIS_ENV}] Test Concurrent Jarvis Sales Operatio
   it.concurrent("Fetch Data Platform", async ({ expect }) => {
     try {
       const data = { success: true };
-      const result = await getData(
+      const result = await Helpers.getDataFromAxios(
         urlPlatform +
           "?period_type=monthly&value_type=net&value_mode=before_discount&active_in[]=sociolla&start_date=2024-09-01&end_date=2024-09-20&t=1725866750404&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10"
       );
@@ -30,7 +30,7 @@ describe.only(`[${process.env.JARVIS_ENV}] Test Concurrent Jarvis Sales Operatio
   it.concurrent("Fetch Data Period", async ({ expect }) => {
     try {
       const data = { success: true };
-      const result = await getData(
+      const result = await Helpers.getDataFromAxios(
         urlPeriod +
           "?period_type=monthly&value_type=net&value_mode=before_discount&active_in[]=sociolla&start_date=2024-09-01&end_date=2024-09-20&t=1725866750404&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10&report_types[]=order&report_types[]=aut&report_types[]=nmv&report_types[]=aov&report_types[]=aur"
       );
@@ -42,7 +42,7 @@ describe.only(`[${process.env.JARVIS_ENV}] Test Concurrent Jarvis Sales Operatio
   it.concurrent("Fetch Data Sales Contribution", async ({ expect }) => {
     try {
       const data = { success: true };
-      const result = await getData(
+      const result = await Helpers.getDataFromAxios(
         urlSalesContribution +
           "?period_type=monthly&value_type=net&value_mode=before_discount&active_in[]=sociolla&start_date=2024-09-01&end_date=2024-09-20&t=1725866750404&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10"
       );
@@ -54,7 +54,7 @@ describe.only(`[${process.env.JARVIS_ENV}] Test Concurrent Jarvis Sales Operatio
   it.concurrent("Fetch Data AOV Distribution", async ({ expect }) => {
     try {
       const data = { success: true };
-      const result = await getData(
+      const result = await Helpers.getDataFromAxios(
         urlAovDistribution +
           "?period_type=monthly&value_type=net&value_mode=before_discount&active_in[]=sociolla&start_date=2024-09-01&end_date=2024-09-20&t=1726554101568&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10"
       );
@@ -66,7 +66,7 @@ describe.only(`[${process.env.JARVIS_ENV}] Test Concurrent Jarvis Sales Operatio
   it.concurrent("Fetch Data Top Sales", async ({ expect }) => {
     try {
       const data = { success: true };
-      const result = await getData(
+      const result = await Helpers.getDataFromAxios(
         urlTopSales +
           "?period_type=monthly&value_type=net&value_mode=before_discount&active_in[]=sociolla&start_date=2024-09-01&end_date=2024-09-20&t=1726554101568&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10&group_by=brand"
       );
@@ -82,7 +82,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Concurrent Jarvis Sales Operation Das
   it.concurrent("Fetch Data Platform", async ({ expect }) => {
     try {
       const data = { success: true };
-      const result = await getData(
+      const result = await Helpers.getDataFromAxios(
         urlPlatform +
           "?order_platform[]=offline_store&store[]=6&period_type=monthly&value_type=net&value_mode=before_discount&business_unit=SRI&active_in[]=sociolla&order_type[]=On+Sale&brand_type=exclusive&start_date=2024-09-01&end_date=2024-09-20&t=1725956611452&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10&store_mongoid[]=5dde3513fdef3a0ce69f9600"
       );
@@ -94,7 +94,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Concurrent Jarvis Sales Operation Das
   it.concurrent("Fetch Data Period", async ({ expect }) => {
     try {
       const data = { success: true };
-      const result = await getData(
+      const result = await Helpers.getDataFromAxios(
         urlPeriod +
           "?order_platform[]=offline_store&store[]=6&period_type=monthly&value_type=net&value_mode=before_discount&business_unit=SRI&active_in[]=sociolla&order_type[]=On+Sale&brand_type=exclusive&start_date=2024-09-01&end_date=2024-09-20&t=1725956611452&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10&store_mongoid[]=5dde3513fdef3a0ce69f9600&report_types[]=order&report_types[]=aut&report_types[]=nmv&report_types[]=aov&report_types[]=aur"
       );
@@ -106,7 +106,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Concurrent Jarvis Sales Operation Das
   it.concurrent("Fetch Data Sales Contribution", async ({ expect }) => {
     try {
       const data = { success: true };
-      const result = await getData(
+      const result = await Helpers.getDataFromAxios(
         urlSalesContribution +
           "??order_platform[]=offline_store&store[]=6&period_type=monthly&value_type=net&value_mode=before_discount&business_unit=SRI&active_in[]=sociolla&order_type[]=On+Sale&brand_type=exclusive&start_date=2024-09-01&end_date=2024-09-20&t=1725956611452&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10&store_mongoid[]=5dde3513fdef3a0ce69f9600"
       );
@@ -118,7 +118,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Concurrent Jarvis Sales Operation Das
   it.concurrent("Fetch Data AOV Distribution", async ({ expect }) => {
     try {
       const data = { success: true };
-      const result = await getData(
+      const result = await Helpers.getDataFromAxios(
         urlAovDistribution +
           "?order_platform[]=offline_store&store[]=6&period_type=monthly&value_type=net&value_mode=before_discount&business_unit=SRI&active_in[]=sociolla&order_type[]=On+Sale&brand_type=exclusive&start_date=2024-09-01&end_date=2024-09-20&t=1725956611452&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10&store_mongoid[]=5dde3513fdef3a0ce69f9600"
       );
@@ -130,7 +130,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Concurrent Jarvis Sales Operation Das
   it.concurrent("Fetch Data Top Sales", async ({ expect }) => {
     try {
       const data = { success: true };
-      const result = await getData(
+      const result = await Helpers.getDataFromAxios(
         urlTopSales +
           "?order_platform[]=offline_store&store[]=6&period_type=monthly&value_type=net&value_mode=before_discount&business_unit=SRI&active_in[]=sociolla&order_type[]=On+Sale&brand_type=exclusive&start_date=2024-09-01&end_date=2024-09-20&t=1725956611452&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10&store_mongoid[]=5dde3513fdef3a0ce69f9600&group_by=brand"
       );
@@ -146,7 +146,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Concurrent Jarvis Sales Operation Das
   it.concurrent("Fetch Data Platform", async ({ expect }) => {
     try {
       const data = { success: true };
-      const result = await getData(
+      const result = await Helpers.getDataFromAxios(
         urlPlatform +
           "?period_type=monthly&value_type=net&value_mode=before_discount&business_unit=SRI&active_in[]=sociolla&start_date=2024-09-01&end_date=2024-09-20&t=1725873906342&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10"
       );
@@ -158,7 +158,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Concurrent Jarvis Sales Operation Das
   it.concurrent("Fetch Data Period", async ({ expect }) => {
     try {
       const data = { success: true };
-      const result = await getData(
+      const result = await Helpers.getDataFromAxios(
         urlPeriod +
           "?period_type=monthly&value_type=net&value_mode=before_discount&business_unit=SRI&active_in[]=sociolla&start_date=2024-09-01&end_date=2024-09-20&t=1725873906342&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10&report_types[]=order&report_types[]=aut&report_types[]=nmv&report_types[]=aov&report_types[]=aur"
       );
@@ -170,7 +170,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Concurrent Jarvis Sales Operation Das
   it.concurrent("Fetch Data Sales Contribution", async ({ expect }) => {
     try {
       const data = { success: true };
-      const result = await getData(
+      const result = await Helpers.getDataFromAxios(
         urlSalesContribution +
           "??period_type=monthly&value_type=net&value_mode=before_discount&business_unit=SRI&active_in[]=sociolla&start_date=2024-09-01&end_date=2024-09-20&t=1725873906342&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10"
       );
@@ -182,7 +182,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Concurrent Jarvis Sales Operation Das
   it.concurrent("Fetch Data AOV Distribution", async ({ expect }) => {
     try {
       const data = { success: true };
-      const result = await getData(
+      const result = await Helpers.getDataFromAxios(
         urlAovDistribution +
           "?period_type=monthly&value_type=net&value_mode=before_discount&business_unit=SRI&active_in[]=sociolla&start_date=2024-09-01&end_date=2024-09-20&t=1726554418498&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10"
       );
@@ -194,7 +194,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Concurrent Jarvis Sales Operation Das
   it.concurrent("Fetch Data Top Sales", async ({ expect }) => {
     try {
       const data = { success: true };
-      const result = await getData(
+      const result = await Helpers.getDataFromAxios(
         urlTopSales +
           "?period_type=monthly&value_type=net&value_mode=before_discount&business_unit=SRI&active_in[]=sociolla&start_date=2024-09-01&end_date=2024-09-20&t=1726554418498&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10&group_by=brand"
       );
@@ -206,7 +206,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Concurrent Jarvis Sales Operation Das
   it.concurrent("Fetch Data Footfalls", async ({ expect }) => {
     try {
       const data = { success: true };
-      const result = await getData(
+      const result = await Helpers.getDataFromAxios(
         urlFootfall +
           "?period_type=monthly&value_type=net&value_mode=before_discount&business_unit=SRI&active_in[]=sociolla&start_date=2024-09-01&end_date=2024-09-20&t=1726554418498&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10"
       );
@@ -218,7 +218,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Concurrent Jarvis Sales Operation Das
   it.concurrent("Fetch Data Net Promotor Score (NPS)", async ({ expect }) => {
     try {
       const data = { success: true };
-      const result = await getData(
+      const result = await Helpers.getDataFromAxios(
         urlNps +
           "?period_type=monthly&value_type=net&value_mode=before_discount&business_unit=SRI&active_in[]=sociolla&start_date=2024-09-01&end_date=2024-09-20&t=1726554418498&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10"
       );
@@ -304,7 +304,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Sal
     "Sales Summary Sort By Column: $sortByColumn -> $expected",
     async ({ sortByColumn, url, expected }) => {
       try {
-        const result = await getData(url);
+        const result = await Helpers.getDataFromAxios(url);
         expect(result).toMatchObject(expected);
       } catch (e) {
         expect(e.message).toBe(
@@ -390,7 +390,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Sal
     "Sales Summary Sort By Column: $sortByColumn -> $expected",
     async ({ sortByColumn, url, expected }) => {
       try {
-        const result = await getData(url);
+        const result = await Helpers.getDataFromAxios(url);
         expect(result).toMatchObject(expected);
       } catch (e) {
         expect(e.message).toBe(
@@ -506,7 +506,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Sal
     "Sales Summary Sort By Column: $sortByColumn -> $expected",
     async ({ sortByColumn, url, expected }) => {
       try {
-        const result = await getData(url);
+        const result = await Helpers.getDataFromAxios(url);
         expect(result).toMatchObject(expected);
       } catch (e) {
         expect(e.message).toBe(
@@ -602,7 +602,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
     "Top Sales Sort By Column: $sortByColumn -> $expected",
     async ({ sortByColumn, url, expected }) => {
       try {
-        const result = await getData(url);
+        const result = await Helpers.getDataFromAxios(url);
         expect(result).toMatchObject(expected);
       } catch (e) {
         expect(e.message).toBe(
@@ -698,7 +698,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
     "Top Sales Sort By Column: $sortByColumn -> $expected",
     async ({ sortByColumn, url, expected }) => {
       try {
-        const result = await getData(url);
+        const result = await Helpers.getDataFromAxios(url);
         expect(result).toMatchObject(expected);
       } catch (e) {
         expect(e.message).toBe(
@@ -794,7 +794,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
     "Top Sales Sort By Column: $sortByColumn -> $expected",
     async ({ sortByColumn, url, expected }) => {
       try {
-        const result = await getData(url);
+        const result = await Helpers.getDataFromAxios(url);
         expect(result).toMatchObject(expected);
       } catch (e) {
         expect(e.message).toBe(
@@ -890,7 +890,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
     "Top Sales Sort By Column: $sortByColumn -> $expected",
     async ({ sortByColumn, url, expected }) => {
       try {
-        const result = await getData(url);
+        const result = await Helpers.getDataFromAxios(url);
         expect(result).toMatchObject(expected);
       } catch (e) {
         expect(e.message).toBe(
@@ -986,7 +986,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
     "Top Sales Sort By Column: $sortByColumn -> $expected",
     async ({ sortByColumn, url, expected }) => {
       try {
-        const result = await getData(url);
+        const result = await Helpers.getDataFromAxios(url);
         expect(result).toMatchObject(expected);
       } catch (e) {
         expect(e.message).toBe(
@@ -1082,7 +1082,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
     "Top Sales Sort By Column: $sortByColumn -> $expected",
     async ({ sortByColumn, url, expected }) => {
       try {
-        const result = await getData(url);
+        const result = await Helpers.getDataFromAxios(url);
         expect(result).toMatchObject(expected);
       } catch (e) {
         expect(e.message).toBe(
@@ -1178,7 +1178,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
     "Top Sales Sort By Column: $sortByColumn -> $expected",
     async ({ sortByColumn, url, expected }) => {
       try {
-        const result = await getData(url);
+        const result = await Helpers.getDataFromAxios(url);
         expect(result).toMatchObject(expected);
       } catch (e) {
         expect(e.message).toBe(
@@ -1274,7 +1274,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
     "Top Sales Sort By Column: $sortByColumn -> $expected",
     async ({ sortByColumn, url, expected }) => {
       try {
-        const result = await getData(url);
+        const result = await Helpers.getDataFromAxios(url);
         expect(result).toMatchObject(expected);
       } catch (e) {
         expect(e.message).toBe(
@@ -1370,7 +1370,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
     "Top Sales Sort By Column: $sortByColumn -> $expected",
     async ({ sortByColumn, url, expected }) => {
       try {
-        const result = await getData(url);
+        const result = await Helpers.getDataFromAxios(url);
         expect(result).toMatchObject(expected);
       } catch (e) {
         expect(e.message).toBe(
