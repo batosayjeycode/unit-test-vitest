@@ -109,7 +109,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis GP Report Sort By Column Featu
         try {
           const result = await Helpers.getDataFromAxios(url);
           const data = (result?.data?.data || []).map((el) => {
-            return parseInt(el[field]);
+            return parseFloat(parseFloat(el[field] || 0).toFixed(2));
           });
           const isDesc = Helpers.isDescending(data);
           expect(isDesc).toBe(expected);
@@ -136,7 +136,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis GP Report Sort By Column Featu
         try {
           const result = await Helpers.getDataFromAxios(url);
           const data = (result?.data?.data || []).map((el) => {
-            return parseInt(el[field]);
+            return parseFloat(parseFloat(el[field] || 0).toFixed(2));
           });
           const isAsc = Helpers.isAscending(data);
           expect(isAsc).toBe(expected);
@@ -168,7 +168,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis GP Report Sort By Column Featu
         try {
           const result = await Helpers.getDataFromAxios(url);
           const data = (result?.data?.data || []).map((el) => {
-            return parseInt(el[field]);
+            return parseFloat(parseFloat(el[field] || 0).toFixed(2));
           });
           const isDesc = Helpers.isDescending(data);
           expect(isDesc).toBe(expected);
@@ -195,7 +195,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis GP Report Sort By Column Featu
         try {
           const result = await Helpers.getDataFromAxios(url);
           const data = (result?.data?.data || []).map((el) => {
-            return parseInt(el[field]);
+            return parseFloat(parseFloat(el[field] || 0).toFixed(2));
           });
           const isAsc = Helpers.isAscending(data);
           expect(isAsc).toBe(expected);
