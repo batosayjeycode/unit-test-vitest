@@ -13,6 +13,152 @@ const urlTopSales = "https://jarvis-api.sociolla.info/v2/sales/top";
 const urlFootfall = "https://jarvis-api.sociolla.info/v2/footfalls";
 const urlNps = "https://jarvis-api.sociolla.info/v2/net-promotor-scores";
 
+const arrColumnSalesSummary = [
+  {
+    sortByColumn: "ORDER",
+    url: "&order_by=order&order_by_type=desc",
+    expected: { success: true },
+  },
+  {
+    sortByColumn: "QTY",
+    url: "&order_by=qty&order_by_type=desc",
+    expected: { success: true },
+  },
+  {
+    sortByColumn: "NMV",
+    url: "&order_by=sales&order_by_type=desc",
+    expected: { success: true },
+  },
+  {
+    sortByColumn: "TOTAL PAID",
+    url: "&order_by=total_paid&order_by_type=desc",
+    expected: { success: true },
+  },
+  {
+    sortByColumn: "NET REVENUE (MP)",
+    url: "&order_by=net_revenue_mp&order_by_type=desc",
+    expected: { success: true },
+  },
+  {
+    sortByColumn: "NET REVENUE (CP)",
+    url: "&order_by=net_revenue_cp&order_by_type=desc",
+    expected: { success: true },
+  },
+  {
+    sortByColumn: "NET REVENUE GROWTH (%)",
+    url: "&order_by=net_revenue_growth&order_by_type=desc",
+    expected: { success: true },
+  },
+  {
+    sortByColumn: "NET REVENUE TARGET (%)",
+    url: "&order_by=net_revenue_target&order_by_type=desc",
+    expected: { success: true },
+  },
+  {
+    sortByColumn: "NET REVENUE ACH. (%)",
+    url: "&order_by=net_revenue_ach&order_by_type=desc",
+    expected: { success: true },
+  },
+  {
+    sortByColumn: "AUT",
+    url: "&order_by=aut&order_by_type=desc",
+    expected: { success: true },
+  },
+  {
+    sortByColumn: "ASP",
+    url: "&order_by=asp&order_by_type=desc",
+    expected: { success: true },
+  },
+  {
+    sortByColumn: "AOV",
+    url: "&order_by=aov&order_by_type=desc",
+    expected: { success: true },
+  },
+  {
+    sortByColumn: "AUR",
+    url: "&order_by=aur&order_by_type=desc",
+    expected: { success: true },
+  },
+];
+
+const arrColumnTopSales = [
+  {
+    sortByColumn: "QTY [AMOUNT (MP)]",
+    url: "&order_by=qty&order_by_type=desc",
+    expected: { success: true },
+  },
+  {
+    sortByColumn: "QTY [CONT. % (MP)]",
+    url: "&order_by=qty_percent&order_by_type=desc",
+    expected: { success: true },
+  },
+  {
+    sortByColumn: "QTY [AMOUNT (CP)]",
+    url: "&order_by=qty_cp&order_by_type=desc",
+    expected: { success: true },
+  },
+  {
+    sortByColumn: "QTY [CONT. % (CP)]",
+    url: "&order_by=qty_percent_cp&order_by_type=desc",
+    expected: { success: true },
+  },
+  {
+    sortByColumn: "QTY [GROWTH (%)]",
+    url: "&order_by=qty_growth&order_by_type=desc",
+    expected: { success: true },
+  },
+  {
+    sortByColumn: "NMV [AMOUNT (MP)]",
+    url: "&order_by=nmv&order_by_type=desc",
+    expected: { success: true },
+  },
+  {
+    sortByColumn: "NMV [CONT. % (MP)]",
+    url: "&order_by=nmv_percent&order_by_type=desc",
+    expected: { success: true },
+  },
+  {
+    sortByColumn: "NMV [AMOUNT (CP)]",
+    url: "&order_by=nmv_cp&order_by_type=desc",
+    expected: { success: true },
+  },
+  {
+    sortByColumn: "NMV [CONT. % (CP)]",
+    url: "&order_by=nmv_percent_cp&order_by_type=desc",
+    expected: { success: true },
+  },
+  {
+    sortByColumn: "NMV [GROWTH (%)]",
+    url: "&order_by=nmv_growth&order_by_type=desc",
+    expected: { success: true },
+  },
+  {
+    sortByColumn: "NET REVENUE [AMOUNT (MP)]",
+    url: "&order_by=net_revenue&order_by_type=desc",
+    expected: { success: true },
+  },
+  {
+    sortByColumn: "NET REVENUE [CONT. % (MP)]",
+    url: "&order_by=net_revenue_percent&order_by_type=desc",
+    expected: { success: true },
+  },
+  {
+    sortByColumn: "NET REVENUE [AMOUNT (CP)]",
+    url: "&order_by=net_revenue_cp&order_by_type=desc",
+    expected: { success: true },
+  },
+  {
+    sortByColumn: "NET REVENUE [CONT. % (CP)]",
+    url: "&order_by=net_revenue_percent_cp&order_by_type=desc",
+    expected: { success: true },
+  },
+  {
+    sortByColumn: "NET REVENUE [GROWTH (%)]",
+    url: "&order_by=net_revenue_growth&order_by_type=desc",
+    expected: { success: true },
+  },
+];
+
 // With filter default
 describe.only(`[${process.env.JARVIS_ENV}] Test Concurrent Jarvis Sales Operation Dashboard, Filter: default`, () => {
   it.concurrent("Fetch Data Platform", async ({ expect }) => {
@@ -234,73 +380,14 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Sal
   const url =
     urlPlatform +
     "?period_type=monthly&value_type=net&value_mode=before_discount&active_in[]=sociolla&start_date=2024-09-01&end_date=2024-09-20&t=1726556945503&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10";
-  it.each([
-    {
-      sortByColumn: "ORDER",
-      url: `${url}&order_by=order&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY",
-      url: `${url}&order_by=qty&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV",
-      url: `${url}&order_by=sales&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "TOTAL PAID",
-      url: `${url}&order_by=total_paid&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE (MP)",
-      url: `${url}&order_by=net_revenue_mp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE (CP)",
-      url: `${url}&order_by=net_revenue_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE GROWTH (%)",
-      url: `${url}&order_by=net_revenue_growth&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE TARGET (%)",
-      url: `${url}&order_by=net_revenue_target&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE ACH. (%)",
-      url: `${url}&order_by=net_revenue_ach&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "AUT",
-      url: `${url}&order_by=aut&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "ASP",
-      url: `${url}&order_by=asp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "AOV",
-      url: `${url}&order_by=aov&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "AUR",
-      url: `${url}&order_by=aur&order_by_type=desc`,
-      expected: { success: true },
-    },
-  ])(
+
+  const arrSortByColumn = arrColumnSalesSummary.map((el) => {
+    const newObj = { ...el };
+    newObj.url = `${url}${newObj.url}`;
+    return newObj;
+  });
+
+  it.each(arrSortByColumn)(
     "Sales Summary Sort By Column: $sortByColumn -> $expected",
     async ({ sortByColumn, url, expected }) => {
       try {
@@ -320,73 +407,14 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Sal
   const url =
     urlPlatform +
     "?order_platform[]=offline_store&store[]=6&period_type=monthly&value_type=net&value_mode=before_discount&business_unit=SRI&active_in[]=sociolla&order_type[]=On+Sale&brand_type=exclusive&start_date=2024-09-01&end_date=2024-09-20&t=1725956611452&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10&store_mongoid[]=5dde3513fdef3a0ce69f9600";
-  it.each([
-    {
-      sortByColumn: "ORDER",
-      url: `${url}&order_by=order&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY",
-      url: `${url}&order_by=qty&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV",
-      url: `${url}&order_by=sales&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "TOTAL PAID",
-      url: `${url}&order_by=total_paid&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE (MP)",
-      url: `${url}&order_by=net_revenue_mp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE (CP)",
-      url: `${url}&order_by=net_revenue_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE GROWTH (%)",
-      url: `${url}&order_by=net_revenue_growth&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE TARGET (%)",
-      url: `${url}&order_by=net_revenue_target&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE ACH. (%)",
-      url: `${url}&order_by=net_revenue_ach&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "AUT",
-      url: `${url}&order_by=aut&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "ASP",
-      url: `${url}&order_by=asp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "AOV",
-      url: `${url}&order_by=aov&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "AUR",
-      url: `${url}&order_by=aur&order_by_type=desc`,
-      expected: { success: true },
-    },
-  ])(
+
+  const arrSortByColumn = arrColumnSalesSummary.map((el) => {
+    const newObj = { ...el };
+    newObj.url = `${url}${newObj.url}`;
+    return newObj;
+  });
+
+  it.each(arrSortByColumn)(
     "Sales Summary Sort By Column: $sortByColumn -> $expected",
     async ({ sortByColumn, url, expected }) => {
       try {
@@ -406,103 +434,14 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Sal
   const url =
     urlPlatform +
     "?period_type=monthly&value_type=net&value_mode=before_discount&business_unit=SRI&active_in[]=sociolla&start_date=2024-09-01&end_date=2024-09-20&t=1725873906342&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10";
-  it.each([
-    {
-      sortByColumn: "ORDER",
-      url: `${url}&order_by=order&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY",
-      url: `${url}&order_by=qty&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV",
-      url: `${url}&order_by=sales&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "TOTAL PAID",
-      url: `${url}&order_by=total_paid&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE (MP)",
-      url: `${url}&order_by=net_revenue_mp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE (CP)",
-      url: `${url}&order_by=net_revenue_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE GROWTH (%)",
-      url: `${url}&order_by=net_revenue_growth&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE TARGET (%)",
-      url: `${url}&order_by=net_revenue_target&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE ACH. (%)",
-      url: `${url}&order_by=net_revenue_ach&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "AUT",
-      url: `${url}&order_by=aut&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "ASP",
-      url: `${url}&order_by=asp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "AOV",
-      url: `${url}&order_by=aov&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "AUR",
-      url: `${url}&order_by=aur&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "OPENING DATE",
-      url: `${url}&order_by=opening_date&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "CITY",
-      url: `${url}&order_by=city&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "PROVINCE",
-      url: `${url}&order_by=province&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "SIZE (SQM)",
-      url: `${url}&order_by=size_sqm&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV PER SQM",
-      url: `${url}&order_by=nmv_sqm&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REV. PER STAFF",
-      url: `${url}&order_by=net_rev_staff&order_by_type=desc`,
-      expected: { success: true },
-    },
-  ])(
+
+  const arrSortByColumn = arrColumnSalesSummary.map((el) => {
+    const newObj = { ...el };
+    newObj.url = `${url}${newObj.url}`;
+    return newObj;
+  });
+
+  it.each(arrSortByColumn)(
     "Sales Summary Sort By Column: $sortByColumn -> $expected",
     async ({ sortByColumn, url, expected }) => {
       try {
@@ -522,83 +461,14 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
   const url =
     urlTopSales +
     "?period_type=monthly&value_type=net&value_mode=before_discount&active_in[]=sociolla&start_date=2024-09-01&end_date=2024-09-20&t=1726556945503&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10&group_by=brand";
-  it.each([
-    {
-      sortByColumn: "QTY [AMOUNT (MP)]",
-      url: `${url}&order_by=qty&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY [CONT. % (MP)]",
-      url: `${url}&order_by=qty_percent&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY [AMOUNT (CP)]",
-      url: `${url}&order_by=qty_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY [CONT. % (CP)]",
-      url: `${url}&order_by=qty_percent_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY [GROWTH (%)]",
-      url: `${url}&order_by=qty_growth&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [AMOUNT (MP)]",
-      url: `${url}&order_by=nmv&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [CONT. % (MP)]",
-      url: `${url}&order_by=nmv_percent&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [AMOUNT (CP)]",
-      url: `${url}&order_by=nmv_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [CONT. % (CP)]",
-      url: `${url}&order_by=nmv_percent_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [GROWTH (%)]",
-      url: `${url}&order_by=nmv_growth&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [AMOUNT (MP)]",
-      url: `${url}&order_by=net_revenue&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [CONT. % (MP)]",
-      url: `${url}&order_by=net_revenue_percent&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [AMOUNT (CP)]",
-      url: `${url}&order_by=net_revenue_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [CONT. % (CP)]",
-      url: `${url}&order_by=net_revenue_percent_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [GROWTH (%)]",
-      url: `${url}&order_by=net_revenue_growth&order_by_type=desc`,
-      expected: { success: true },
-    },
-  ])(
+
+  const arrSortByColumn = arrColumnTopSales.map((el) => {
+    const newObj = { ...el };
+    newObj.url = `${url}${newObj.url}`;
+    return newObj;
+  });
+
+  it.each(arrSortByColumn)(
     "Top Sales Sort By Column: $sortByColumn -> $expected",
     async ({ sortByColumn, url, expected }) => {
       try {
@@ -618,83 +488,14 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
   const url =
     urlTopSales +
     "?order_platform[]=offline_store&store[]=6&period_type=monthly&value_type=net&value_mode=before_discount&business_unit=SRI&active_in[]=sociolla&order_type[]=On+Sale&brand_type=exclusive&start_date=2024-09-01&end_date=2024-09-20&t=1725956611452&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10&store_mongoid[]=5dde3513fdef3a0ce69f9600&group_by=brand";
-  it.each([
-    {
-      sortByColumn: "QTY [AMOUNT (MP)]",
-      url: `${url}&order_by=qty&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY [CONT. % (MP)]",
-      url: `${url}&order_by=qty_percent&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY [AMOUNT (CP)]",
-      url: `${url}&order_by=qty_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY [CONT. % (CP)]",
-      url: `${url}&order_by=qty_percent_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY [GROWTH (%)]",
-      url: `${url}&order_by=qty_growth&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [AMOUNT (MP)]",
-      url: `${url}&order_by=nmv&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [CONT. % (MP)]",
-      url: `${url}&order_by=nmv_percent&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [AMOUNT (CP)]",
-      url: `${url}&order_by=nmv_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [CONT. % (CP)]",
-      url: `${url}&order_by=nmv_percent_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [GROWTH (%)]",
-      url: `${url}&order_by=nmv_growth&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [AMOUNT (MP)]",
-      url: `${url}&order_by=net_revenue&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [CONT. % (MP)]",
-      url: `${url}&order_by=net_revenue_percent&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [AMOUNT (CP)]",
-      url: `${url}&order_by=net_revenue_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [CONT. % (CP)]",
-      url: `${url}&order_by=net_revenue_percent_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [GROWTH (%)]",
-      url: `${url}&order_by=net_revenue_growth&order_by_type=desc`,
-      expected: { success: true },
-    },
-  ])(
+
+  const arrSortByColumn = arrColumnTopSales.map((el) => {
+    const newObj = { ...el };
+    newObj.url = `${url}${newObj.url}`;
+    return newObj;
+  });
+
+  it.each(arrSortByColumn)(
     "Top Sales Sort By Column: $sortByColumn -> $expected",
     async ({ sortByColumn, url, expected }) => {
       try {
@@ -714,83 +515,14 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
   const url =
     urlTopSales +
     "?period_type=monthly&value_type=net&value_mode=before_discount&business_unit=SRI&active_in[]=sociolla&start_date=2024-09-01&end_date=2024-09-20&t=1726630158011&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10&group_by=brand";
-  it.each([
-    {
-      sortByColumn: "QTY [AMOUNT (MP)]",
-      url: `${url}&order_by=qty&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY [CONT. % (MP)]",
-      url: `${url}&order_by=qty_percent&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY [AMOUNT (CP)]",
-      url: `${url}&order_by=qty_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY [CONT. % (CP)]",
-      url: `${url}&order_by=qty_percent_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY [GROWTH (%)]",
-      url: `${url}&order_by=qty_growth&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [AMOUNT (MP)]",
-      url: `${url}&order_by=nmv&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [CONT. % (MP)]",
-      url: `${url}&order_by=nmv_percent&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [AMOUNT (CP)]",
-      url: `${url}&order_by=nmv_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [CONT. % (CP)]",
-      url: `${url}&order_by=nmv_percent_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [GROWTH (%)]",
-      url: `${url}&order_by=nmv_growth&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [AMOUNT (MP)]",
-      url: `${url}&order_by=net_revenue&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [CONT. % (MP)]",
-      url: `${url}&order_by=net_revenue_percent&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [AMOUNT (CP)]",
-      url: `${url}&order_by=net_revenue_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [CONT. % (CP)]",
-      url: `${url}&order_by=net_revenue_percent_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [GROWTH (%)]",
-      url: `${url}&order_by=net_revenue_growth&order_by_type=desc`,
-      expected: { success: true },
-    },
-  ])(
+
+  const arrSortByColumn = arrColumnTopSales.map((el) => {
+    const newObj = { ...el };
+    newObj.url = `${url}${newObj.url}`;
+    return newObj;
+  });
+
+  it.each(arrSortByColumn)(
     "Top Sales Sort By Column: $sortByColumn -> $expected",
     async ({ sortByColumn, url, expected }) => {
       try {
@@ -810,83 +542,14 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
   const url =
     urlTopSales +
     "?period_type=monthly&value_type=net&value_mode=before_discount&active_in[]=sociolla&start_date=2024-09-01&end_date=2024-09-20&t=1726556945503&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10&group_by=category";
-  it.each([
-    {
-      sortByColumn: "QTY [AMOUNT (MP)]",
-      url: `${url}&order_by=qty&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY [CONT. % (MP)]",
-      url: `${url}&order_by=qty_percent&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY [AMOUNT (CP)]",
-      url: `${url}&order_by=qty_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY [CONT. % (CP)]",
-      url: `${url}&order_by=qty_percent_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY [GROWTH (%)]",
-      url: `${url}&order_by=qty_growth&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [AMOUNT (MP)]",
-      url: `${url}&order_by=nmv&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [CONT. % (MP)]",
-      url: `${url}&order_by=nmv_percent&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [AMOUNT (CP)]",
-      url: `${url}&order_by=nmv_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [CONT. % (CP)]",
-      url: `${url}&order_by=nmv_percent_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [GROWTH (%)]",
-      url: `${url}&order_by=nmv_growth&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [AMOUNT (MP)]",
-      url: `${url}&order_by=net_revenue&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [CONT. % (MP)]",
-      url: `${url}&order_by=net_revenue_percent&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [AMOUNT (CP)]",
-      url: `${url}&order_by=net_revenue_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [CONT. % (CP)]",
-      url: `${url}&order_by=net_revenue_percent_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [GROWTH (%)]",
-      url: `${url}&order_by=net_revenue_growth&order_by_type=desc`,
-      expected: { success: true },
-    },
-  ])(
+
+  const arrSortByColumn = arrColumnTopSales.map((el) => {
+    const newObj = { ...el };
+    newObj.url = `${url}${newObj.url}`;
+    return newObj;
+  });
+
+  it.each(arrSortByColumn)(
     "Top Sales Sort By Column: $sortByColumn -> $expected",
     async ({ sortByColumn, url, expected }) => {
       try {
@@ -906,83 +569,14 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
   const url =
     urlTopSales +
     "?order_platform[]=offline_store&store[]=6&period_type=monthly&value_type=net&value_mode=before_discount&business_unit=SRI&active_in[]=sociolla&order_type[]=On+Sale&brand_type=exclusive&start_date=2024-09-01&end_date=2024-09-20&t=1725956611452&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10&store_mongoid[]=5dde3513fdef3a0ce69f9600&group_by=category";
-  it.each([
-    {
-      sortByColumn: "QTY [AMOUNT (MP)]",
-      url: `${url}&order_by=qty&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY [CONT. % (MP)]",
-      url: `${url}&order_by=qty_percent&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY [AMOUNT (CP)]",
-      url: `${url}&order_by=qty_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY [CONT. % (CP)]",
-      url: `${url}&order_by=qty_percent_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY [GROWTH (%)]",
-      url: `${url}&order_by=qty_growth&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [AMOUNT (MP)]",
-      url: `${url}&order_by=nmv&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [CONT. % (MP)]",
-      url: `${url}&order_by=nmv_percent&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [AMOUNT (CP)]",
-      url: `${url}&order_by=nmv_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [CONT. % (CP)]",
-      url: `${url}&order_by=nmv_percent_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [GROWTH (%)]",
-      url: `${url}&order_by=nmv_growth&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [AMOUNT (MP)]",
-      url: `${url}&order_by=net_revenue&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [CONT. % (MP)]",
-      url: `${url}&order_by=net_revenue_percent&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [AMOUNT (CP)]",
-      url: `${url}&order_by=net_revenue_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [CONT. % (CP)]",
-      url: `${url}&order_by=net_revenue_percent_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [GROWTH (%)]",
-      url: `${url}&order_by=net_revenue_growth&order_by_type=desc`,
-      expected: { success: true },
-    },
-  ])(
+
+  const arrSortByColumn = arrColumnTopSales.map((el) => {
+    const newObj = { ...el };
+    newObj.url = `${url}${newObj.url}`;
+    return newObj;
+  });
+
+  it.each(arrSortByColumn)(
     "Top Sales Sort By Column: $sortByColumn -> $expected",
     async ({ sortByColumn, url, expected }) => {
       try {
@@ -1002,83 +596,14 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
   const url =
     urlTopSales +
     "?period_type=monthly&value_type=net&value_mode=before_discount&business_unit=SRI&active_in[]=sociolla&start_date=2024-09-01&end_date=2024-09-20&t=1726630158011&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10&group_by=category";
-  it.each([
-    {
-      sortByColumn: "QTY [AMOUNT (MP)]",
-      url: `${url}&order_by=qty&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY [CONT. % (MP)]",
-      url: `${url}&order_by=qty_percent&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY [AMOUNT (CP)]",
-      url: `${url}&order_by=qty_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY [CONT. % (CP)]",
-      url: `${url}&order_by=qty_percent_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY [GROWTH (%)]",
-      url: `${url}&order_by=qty_growth&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [AMOUNT (MP)]",
-      url: `${url}&order_by=nmv&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [CONT. % (MP)]",
-      url: `${url}&order_by=nmv_percent&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [AMOUNT (CP)]",
-      url: `${url}&order_by=nmv_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [CONT. % (CP)]",
-      url: `${url}&order_by=nmv_percent_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [GROWTH (%)]",
-      url: `${url}&order_by=nmv_growth&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [AMOUNT (MP)]",
-      url: `${url}&order_by=net_revenue&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [CONT. % (MP)]",
-      url: `${url}&order_by=net_revenue_percent&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [AMOUNT (CP)]",
-      url: `${url}&order_by=net_revenue_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [CONT. % (CP)]",
-      url: `${url}&order_by=net_revenue_percent_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [GROWTH (%)]",
-      url: `${url}&order_by=net_revenue_growth&order_by_type=desc`,
-      expected: { success: true },
-    },
-  ])(
+
+  const arrSortByColumn = arrColumnTopSales.map((el) => {
+    const newObj = { ...el };
+    newObj.url = `${url}${newObj.url}`;
+    return newObj;
+  });
+
+  it.each(arrSortByColumn)(
     "Top Sales Sort By Column: $sortByColumn -> $expected",
     async ({ sortByColumn, url, expected }) => {
       try {
@@ -1098,83 +623,14 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
   const url =
     urlTopSales +
     "?period_type=monthly&value_type=net&value_mode=before_discount&active_in[]=sociolla&start_date=2024-09-01&end_date=2024-09-20&t=1726556945503&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10&group_by=product";
-  it.each([
-    {
-      sortByColumn: "QTY [AMOUNT (MP)]",
-      url: `${url}&order_by=qty&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY [CONT. % (MP)]",
-      url: `${url}&order_by=qty_percent&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY [AMOUNT (CP)]",
-      url: `${url}&order_by=qty_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY [CONT. % (CP)]",
-      url: `${url}&order_by=qty_percent_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY [GROWTH (%)]",
-      url: `${url}&order_by=qty_growth&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [AMOUNT (MP)]",
-      url: `${url}&order_by=nmv&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [CONT. % (MP)]",
-      url: `${url}&order_by=nmv_percent&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [AMOUNT (CP)]",
-      url: `${url}&order_by=nmv_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [CONT. % (CP)]",
-      url: `${url}&order_by=nmv_percent_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [GROWTH (%)]",
-      url: `${url}&order_by=nmv_growth&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [AMOUNT (MP)]",
-      url: `${url}&order_by=net_revenue&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [CONT. % (MP)]",
-      url: `${url}&order_by=net_revenue_percent&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [AMOUNT (CP)]",
-      url: `${url}&order_by=net_revenue_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [CONT. % (CP)]",
-      url: `${url}&order_by=net_revenue_percent_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [GROWTH (%)]",
-      url: `${url}&order_by=net_revenue_growth&order_by_type=desc`,
-      expected: { success: true },
-    },
-  ])(
+
+  const arrSortByColumn = arrColumnTopSales.map((el) => {
+    const newObj = { ...el };
+    newObj.url = `${url}${newObj.url}`;
+    return newObj;
+  });
+
+  it.each(arrSortByColumn)(
     "Top Sales Sort By Column: $sortByColumn -> $expected",
     async ({ sortByColumn, url, expected }) => {
       try {
@@ -1194,83 +650,14 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
   const url =
     urlTopSales +
     "?order_platform[]=offline_store&store[]=6&period_type=monthly&value_type=net&value_mode=before_discount&business_unit=SRI&active_in[]=sociolla&order_type[]=On+Sale&brand_type=exclusive&start_date=2024-09-01&end_date=2024-09-20&t=1725956611452&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10&store_mongoid[]=5dde3513fdef3a0ce69f9600&group_by=product";
-  it.each([
-    {
-      sortByColumn: "QTY [AMOUNT (MP)]",
-      url: `${url}&order_by=qty&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY [CONT. % (MP)]",
-      url: `${url}&order_by=qty_percent&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY [AMOUNT (CP)]",
-      url: `${url}&order_by=qty_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY [CONT. % (CP)]",
-      url: `${url}&order_by=qty_percent_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY [GROWTH (%)]",
-      url: `${url}&order_by=qty_growth&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [AMOUNT (MP)]",
-      url: `${url}&order_by=nmv&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [CONT. % (MP)]",
-      url: `${url}&order_by=nmv_percent&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [AMOUNT (CP)]",
-      url: `${url}&order_by=nmv_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [CONT. % (CP)]",
-      url: `${url}&order_by=nmv_percent_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [GROWTH (%)]",
-      url: `${url}&order_by=nmv_growth&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [AMOUNT (MP)]",
-      url: `${url}&order_by=net_revenue&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [CONT. % (MP)]",
-      url: `${url}&order_by=net_revenue_percent&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [AMOUNT (CP)]",
-      url: `${url}&order_by=net_revenue_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [CONT. % (CP)]",
-      url: `${url}&order_by=net_revenue_percent_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [GROWTH (%)]",
-      url: `${url}&order_by=net_revenue_growth&order_by_type=desc`,
-      expected: { success: true },
-    },
-  ])(
+
+  const arrSortByColumn = arrColumnTopSales.map((el) => {
+    const newObj = { ...el };
+    newObj.url = `${url}${newObj.url}`;
+    return newObj;
+  });
+
+  it.each(arrSortByColumn)(
     "Top Sales Sort By Column: $sortByColumn -> $expected",
     async ({ sortByColumn, url, expected }) => {
       try {
@@ -1290,83 +677,14 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
   const url =
     urlTopSales +
     "?period_type=monthly&value_type=net&value_mode=before_discount&business_unit=SRI&active_in[]=sociolla&start_date=2024-09-01&end_date=2024-09-20&t=1726630158011&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10&group_by=product";
-  it.each([
-    {
-      sortByColumn: "QTY [AMOUNT (MP)]",
-      url: `${url}&order_by=qty&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY [CONT. % (MP)]",
-      url: `${url}&order_by=qty_percent&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY [AMOUNT (CP)]",
-      url: `${url}&order_by=qty_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY [CONT. % (CP)]",
-      url: `${url}&order_by=qty_percent_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "QTY [GROWTH (%)]",
-      url: `${url}&order_by=qty_growth&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [AMOUNT (MP)]",
-      url: `${url}&order_by=nmv&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [CONT. % (MP)]",
-      url: `${url}&order_by=nmv_percent&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [AMOUNT (CP)]",
-      url: `${url}&order_by=nmv_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [CONT. % (CP)]",
-      url: `${url}&order_by=nmv_percent_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NMV [GROWTH (%)]",
-      url: `${url}&order_by=nmv_growth&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [AMOUNT (MP)]",
-      url: `${url}&order_by=net_revenue&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [CONT. % (MP)]",
-      url: `${url}&order_by=net_revenue_percent&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [AMOUNT (CP)]",
-      url: `${url}&order_by=net_revenue_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [CONT. % (CP)]",
-      url: `${url}&order_by=net_revenue_percent_cp&order_by_type=desc`,
-      expected: { success: true },
-    },
-    {
-      sortByColumn: "NET REVENUE [GROWTH (%)]",
-      url: `${url}&order_by=net_revenue_growth&order_by_type=desc`,
-      expected: { success: true },
-    },
-  ])(
+
+  const arrSortByColumn = arrColumnTopSales.map((el) => {
+    const newObj = { ...el };
+    newObj.url = `${url}${newObj.url}`;
+    return newObj;
+  });
+
+  it.each(arrSortByColumn)(
     "Top Sales Sort By Column: $sortByColumn -> $expected",
     async ({ sortByColumn, url, expected }) => {
       try {
