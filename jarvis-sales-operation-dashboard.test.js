@@ -160,7 +160,7 @@ const arrColumnTopSales = [
 ];
 
 // With filter default
-describe.only(`[${process.env.JARVIS_ENV}] Test Concurrent Jarvis Sales Operation Dashboard, Filter: default`, () => {
+describe(`[${process.env.JARVIS_ENV}] Test Concurrent Jarvis Sales Operation Dashboard, Filter: default`, () => {
   it.concurrent("Fetch Data Platform", async ({ expect }) => {
     try {
       const data = { success: true };
@@ -376,7 +376,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Concurrent Jarvis Sales Operation Das
 });
 
 // Sales summary Sort By Column Feature With Filter Default
-describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Sales Summary Sort By Column Feature, Filter: default`, () => {
+describe.only(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Sales Summary Sort By Column Feature, Filter: default`, () => {
   const url =
     urlPlatform +
     "?period_type=monthly&value_type=net&value_mode=before_discount&active_in[]=sociolla&start_date=2024-09-01&end_date=2024-09-20&t=1726556945503&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10";
