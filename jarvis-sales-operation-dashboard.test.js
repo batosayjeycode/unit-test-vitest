@@ -16,67 +16,80 @@ const urlNps = "https://jarvis-api.sociolla.info/v2/net-promotor-scores";
 const arrColumnSalesSummary = [
   {
     sortByColumn: "ORDER",
-    url: "&order_by=order&order_by_type=desc",
+    field: "order",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "QTY",
-    url: "&order_by=qty&order_by_type=desc",
+    field: "qty",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "NMV",
-    url: "&order_by=sales&order_by_type=desc",
+    field: "sales",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "TOTAL PAID",
-    url: "&order_by=total_paid&order_by_type=desc",
+    field: "total_paid",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "NET REVENUE (MP)",
-    url: "&order_by=net_revenue_mp&order_by_type=desc",
+    field: "net_revenue_mp",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "NET REVENUE (CP)",
-    url: "&order_by=net_revenue_cp&order_by_type=desc",
+    field: "net_revenue_cp",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "NET REVENUE GROWTH (%)",
-    url: "&order_by=net_revenue_growth&order_by_type=desc",
+    field: "net_revenue_growth",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "NET REVENUE TARGET (%)",
-    url: "&order_by=net_revenue_target&order_by_type=desc",
+    field: "net_revenue_target",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "NET REVENUE ACH. (%)",
-    url: "&order_by=net_revenue_ach&order_by_type=desc",
+    field: "net_revenue_ach",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "AUT",
-    url: "&order_by=aut&order_by_type=desc",
+    field: "aut",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "ASP",
-    url: "&order_by=asp&order_by_type=desc",
+    field: "asp",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "AOV",
-    url: "&order_by=aov&order_by_type=desc",
+    field: "aov",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "AUR",
-    url: "&order_by=aur&order_by_type=desc",
+    field: "aur",
+    dataType: "number",
     expected: { success: true },
   },
 ];
@@ -84,83 +97,98 @@ const arrColumnSalesSummary = [
 const arrColumnTopSales = [
   {
     sortByColumn: "QTY [AMOUNT (MP)]",
-    url: "&order_by=qty&order_by_type=desc",
+    field: "qty",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "QTY [CONT. % (MP)]",
-    url: "&order_by=qty_percent&order_by_type=desc",
+    field: "qty_percent",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "QTY [AMOUNT (CP)]",
-    url: "&order_by=qty_cp&order_by_type=desc",
+    field: "qty_cp",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "QTY [CONT. % (CP)]",
-    url: "&order_by=qty_percent_cp&order_by_type=desc",
+    field: "qty_percent_cp",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "QTY [GROWTH (%)]",
-    url: "&order_by=qty_growth&order_by_type=desc",
+    field: "qty_growth",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "NMV [AMOUNT (MP)]",
-    url: "&order_by=nmv&order_by_type=desc",
+    field: "nmv",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "NMV [CONT. % (MP)]",
-    url: "&order_by=nmv_percent&order_by_type=desc",
+    field: "nmv_percent",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "NMV [AMOUNT (CP)]",
-    url: "&order_by=nmv_cp&order_by_type=desc",
+    field: "nmv_cp",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "NMV [CONT. % (CP)]",
-    url: "&order_by=nmv_percent_cp&order_by_type=desc",
+    field: "nmv_percent_cp",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "NMV [GROWTH (%)]",
-    url: "&order_by=nmv_growth&order_by_type=desc",
+    field: "nmv_growth",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "NET REVENUE [AMOUNT (MP)]",
-    url: "&order_by=net_revenue&order_by_type=desc",
+    field: "net_revenue",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "NET REVENUE [CONT. % (MP)]",
-    url: "&order_by=net_revenue_percent&order_by_type=desc",
+    field: "net_revenue_percent",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "NET REVENUE [AMOUNT (CP)]",
-    url: "&order_by=net_revenue_cp&order_by_type=desc",
+    field: "net_revenue_cp",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "NET REVENUE [CONT. % (CP)]",
-    url: "&order_by=net_revenue_percent_cp&order_by_type=desc",
+    field: "net_revenue_percent_cp",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "NET REVENUE [GROWTH (%)]",
-    url: "&order_by=net_revenue_growth&order_by_type=desc",
+    field: "net_revenue_growth",
+    dataType: "number",
     expected: { success: true },
   },
 ];
 
 // With filter default
-describe(`[${process.env.JARVIS_ENV}] Test Concurrent Jarvis Sales Operation Dashboard, Filter: default`, () => {
+describe.only(`[${process.env.JARVIS_ENV}] Test Concurrent Jarvis Sales Operation Dashboard, Filter: default`, () => {
   it.concurrent("Fetch Data Platform", async ({ expect }) => {
     try {
       const data = { success: true };
@@ -376,30 +404,68 @@ describe(`[${process.env.JARVIS_ENV}] Test Concurrent Jarvis Sales Operation Das
 });
 
 // Sales summary Sort By Column Feature With Filter Default
-describe.only(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Sales Summary Sort By Column Feature, Filter: default`, () => {
+describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Sales Summary Sort By Column Feature, Filter: default`, () => {
   const url =
     urlPlatform +
     "?period_type=monthly&value_type=net&value_mode=before_discount&active_in[]=sociolla&start_date=2024-09-01&end_date=2024-09-20&t=1726556945503&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10";
 
-  const arrSortByColumn = arrColumnSalesSummary.map((el) => {
-    const newObj = { ...el };
-    newObj.url = `${url}${newObj.url}`;
-    return newObj;
+  describe(`[${process.env.JARVIS_ENV}] Sort Type DESC`, () => {
+    const arrSortByColumnDesc = arrColumnSalesSummary.map((el) => {
+      const newObj = { ...el };
+      newObj.url = `${url}&order_by=${newObj.field}&order_by_type=DESC`;
+      newObj.expected = true;
+      return newObj;
+    });
+
+    it.each(arrSortByColumnDesc)(
+      "Sort By Column: $sortByColumn -> $expected",
+      async ({ sortByColumn, field, url, expected, dataType }) => {
+        try {
+          const result = await Helpers.getDataFromAxios(url);
+          const data = (result?.data?.data || []).map((el) => {
+            return dataType === "number"
+              ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+              : el[field];
+          });
+          const isDesc = Helpers.isDescending(data);
+          expect(isDesc).toBe(expected);
+        } catch (e) {
+          expect(e.message).toBe(
+            `Unable to fetch gp report sort by column: ${sortByColumn}`
+          );
+        }
+      }
+    );
   });
 
-  it.each(arrSortByColumn)(
-    "Sales Summary Sort By Column: $sortByColumn -> $expected",
-    async ({ sortByColumn, url, expected }) => {
-      try {
-        const result = await Helpers.getDataFromAxios(url);
-        expect(result).toMatchObject(expected);
-      } catch (e) {
-        expect(e.message).toBe(
-          `Unable to fetch sales summary sort by column: ${sortByColumn}`
-        );
+  describe.skip(`[${process.env.JARVIS_ENV}] Sort Type ASC`, () => {
+    const arrSortByColumnAsc = arrColumnSalesSummary.map((el) => {
+      const newObj = { ...el };
+      newObj.url = `${url}&order_by=${newObj.field}&order_by_type=ASC`;
+      newObj.expected = true;
+      return newObj;
+    });
+
+    it.each(arrSortByColumnAsc)(
+      "Sort By Column: $sortByColumn -> $expected",
+      async ({ sortByColumn, field, url, expected, dataType }) => {
+        try {
+          const result = await Helpers.getDataFromAxios(url);
+          const data = (result?.data?.data || []).map((el) => {
+            return dataType === "number"
+              ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+              : el[field];
+          });
+          const isAsc = Helpers.isAscending(data);
+          expect(isAsc).toBe(expected);
+        } catch (e) {
+          expect(e.message).toBe(
+            `Unable to fetch gp report sort by column: ${sortByColumn}`
+          );
+        }
       }
-    }
-  );
+    );
+  });
 });
 
 // Sales summary Sort By Column Feature With All Filter
@@ -408,25 +474,63 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Sal
     urlPlatform +
     "?order_platform[]=offline_store&store[]=6&period_type=monthly&value_type=net&value_mode=before_discount&business_unit=SRI&active_in[]=sociolla&order_type[]=On+Sale&brand_type=exclusive&start_date=2024-09-01&end_date=2024-09-20&t=1725956611452&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10&store_mongoid[]=5dde3513fdef3a0ce69f9600";
 
-  const arrSortByColumn = arrColumnSalesSummary.map((el) => {
-    const newObj = { ...el };
-    newObj.url = `${url}${newObj.url}`;
-    return newObj;
+  describe(`[${process.env.JARVIS_ENV}] Sort Type DESC`, () => {
+    const arrSortByColumnDesc = arrColumnSalesSummary.map((el) => {
+      const newObj = { ...el };
+      newObj.url = `${url}&order_by=${newObj.field}&order_by_type=DESC`;
+      newObj.expected = true;
+      return newObj;
+    });
+
+    it.each(arrSortByColumnDesc)(
+      "Sort By Column: $sortByColumn -> $expected",
+      async ({ sortByColumn, field, url, expected, dataType }) => {
+        try {
+          const result = await Helpers.getDataFromAxios(url);
+          const data = (result?.data?.data || []).map((el) => {
+            return dataType === "number"
+              ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+              : el[field];
+          });
+          const isDesc = Helpers.isDescending(data);
+          expect(isDesc).toBe(expected);
+        } catch (e) {
+          expect(e.message).toBe(
+            `Unable to fetch gp report sort by column: ${sortByColumn}`
+          );
+        }
+      }
+    );
   });
 
-  it.each(arrSortByColumn)(
-    "Sales Summary Sort By Column: $sortByColumn -> $expected",
-    async ({ sortByColumn, url, expected }) => {
-      try {
-        const result = await Helpers.getDataFromAxios(url);
-        expect(result).toMatchObject(expected);
-      } catch (e) {
-        expect(e.message).toBe(
-          `Unable to fetch sales summary sort by column: ${sortByColumn}`
-        );
+  describe.skip(`[${process.env.JARVIS_ENV}] Sort Type ASC`, () => {
+    const arrSortByColumnAsc = arrColumnSalesSummary.map((el) => {
+      const newObj = { ...el };
+      newObj.url = `${url}&order_by=${newObj.field}&order_by_type=ASC`;
+      newObj.expected = true;
+      return newObj;
+    });
+
+    it.each(arrSortByColumnAsc)(
+      "Sort By Column: $sortByColumn -> $expected",
+      async ({ sortByColumn, field, url, expected, dataType }) => {
+        try {
+          const result = await Helpers.getDataFromAxios(url);
+          const data = (result?.data?.data || []).map((el) => {
+            return dataType === "number"
+              ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+              : el[field];
+          });
+          const isAsc = Helpers.isAscending(data);
+          expect(isAsc).toBe(expected);
+        } catch (e) {
+          expect(e.message).toBe(
+            `Unable to fetch gp report sort by column: ${sortByColumn}`
+          );
+        }
       }
-    }
-  );
+    );
+  });
 });
 
 // Sales summary Sort By Column Feature With Filter Business Unit Offline
@@ -435,25 +539,63 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Sal
     urlPlatform +
     "?period_type=monthly&value_type=net&value_mode=before_discount&business_unit=SRI&active_in[]=sociolla&start_date=2024-09-01&end_date=2024-09-20&t=1725873906342&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10";
 
-  const arrSortByColumn = arrColumnSalesSummary.map((el) => {
-    const newObj = { ...el };
-    newObj.url = `${url}${newObj.url}`;
-    return newObj;
+  describe(`[${process.env.JARVIS_ENV}] Sort Type DESC`, () => {
+    const arrSortByColumnDesc = arrColumnSalesSummary.map((el) => {
+      const newObj = { ...el };
+      newObj.url = `${url}&order_by=${newObj.field}&order_by_type=DESC`;
+      newObj.expected = true;
+      return newObj;
+    });
+
+    it.each(arrSortByColumnDesc)(
+      "Sort By Column: $sortByColumn -> $expected",
+      async ({ sortByColumn, field, url, expected, dataType }) => {
+        try {
+          const result = await Helpers.getDataFromAxios(url);
+          const data = (result?.data?.data || []).map((el) => {
+            return dataType === "number"
+              ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+              : el[field];
+          });
+          const isDesc = Helpers.isDescending(data);
+          expect(isDesc).toBe(expected);
+        } catch (e) {
+          expect(e.message).toBe(
+            `Unable to fetch gp report sort by column: ${sortByColumn}`
+          );
+        }
+      }
+    );
   });
 
-  it.each(arrSortByColumn)(
-    "Sales Summary Sort By Column: $sortByColumn -> $expected",
-    async ({ sortByColumn, url, expected }) => {
-      try {
-        const result = await Helpers.getDataFromAxios(url);
-        expect(result).toMatchObject(expected);
-      } catch (e) {
-        expect(e.message).toBe(
-          `Unable to fetch sales summary sort by column: ${sortByColumn}`
-        );
+  describe.skip(`[${process.env.JARVIS_ENV}] Sort Type ASC`, () => {
+    const arrSortByColumnAsc = arrColumnSalesSummary.map((el) => {
+      const newObj = { ...el };
+      newObj.url = `${url}&order_by=${newObj.field}&order_by_type=ASC`;
+      newObj.expected = true;
+      return newObj;
+    });
+
+    it.each(arrSortByColumnAsc)(
+      "Sort By Column: $sortByColumn -> $expected",
+      async ({ sortByColumn, field, url, expected, dataType }) => {
+        try {
+          const result = await Helpers.getDataFromAxios(url);
+          const data = (result?.data?.data || []).map((el) => {
+            return dataType === "number"
+              ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+              : el[field];
+          });
+          const isAsc = Helpers.isAscending(data);
+          expect(isAsc).toBe(expected);
+        } catch (e) {
+          expect(e.message).toBe(
+            `Unable to fetch gp report sort by column: ${sortByColumn}`
+          );
+        }
       }
-    }
-  );
+    );
+  });
 });
 
 // Top Sales Sort By Column Feature With Filter Default Group By Brand
@@ -462,25 +604,63 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
     urlTopSales +
     "?period_type=monthly&value_type=net&value_mode=before_discount&active_in[]=sociolla&start_date=2024-09-01&end_date=2024-09-20&t=1726556945503&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10&group_by=brand";
 
-  const arrSortByColumn = arrColumnTopSales.map((el) => {
-    const newObj = { ...el };
-    newObj.url = `${url}${newObj.url}`;
-    return newObj;
+  describe(`[${process.env.JARVIS_ENV}] Sort Type DESC`, () => {
+    const arrSortByColumnDesc = arrColumnTopSales.map((el) => {
+      const newObj = { ...el };
+      newObj.url = `${url}&order_by=${newObj.field}&order_by_type=DESC`;
+      newObj.expected = true;
+      return newObj;
+    });
+
+    it.each(arrSortByColumnDesc)(
+      "Sort By Column: $sortByColumn -> $expected",
+      async ({ sortByColumn, field, url, expected, dataType }) => {
+        try {
+          const result = await Helpers.getDataFromAxios(url);
+          const data = (result?.data?.data || []).map((el) => {
+            return dataType === "number"
+              ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+              : el[field];
+          });
+          const isDesc = Helpers.isDescending(data);
+          expect(isDesc).toBe(expected);
+        } catch (e) {
+          expect(e.message).toBe(
+            `Unable to fetch gp report sort by column: ${sortByColumn}`
+          );
+        }
+      }
+    );
   });
 
-  it.each(arrSortByColumn)(
-    "Top Sales Sort By Column: $sortByColumn -> $expected",
-    async ({ sortByColumn, url, expected }) => {
-      try {
-        const result = await Helpers.getDataFromAxios(url);
-        expect(result).toMatchObject(expected);
-      } catch (e) {
-        expect(e.message).toBe(
-          `Unable to fetch top sales sort by column: ${sortByColumn}`
-        );
+  describe.skip(`[${process.env.JARVIS_ENV}] Sort Type ASC`, () => {
+    const arrSortByColumnAsc = arrColumnTopSales.map((el) => {
+      const newObj = { ...el };
+      newObj.url = `${url}&order_by=${newObj.field}&order_by_type=ASC`;
+      newObj.expected = true;
+      return newObj;
+    });
+
+    it.each(arrSortByColumnAsc)(
+      "Sort By Column: $sortByColumn -> $expected",
+      async ({ sortByColumn, field, url, expected, dataType }) => {
+        try {
+          const result = await Helpers.getDataFromAxios(url);
+          const data = (result?.data?.data || []).map((el) => {
+            return dataType === "number"
+              ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+              : el[field];
+          });
+          const isAsc = Helpers.isAscending(data);
+          expect(isAsc).toBe(expected);
+        } catch (e) {
+          expect(e.message).toBe(
+            `Unable to fetch gp report sort by column: ${sortByColumn}`
+          );
+        }
       }
-    }
-  );
+    );
+  });
 });
 
 // Top Sales Sort By Column Feature With All Filter Group By Brand
@@ -489,25 +669,63 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
     urlTopSales +
     "?order_platform[]=offline_store&store[]=6&period_type=monthly&value_type=net&value_mode=before_discount&business_unit=SRI&active_in[]=sociolla&order_type[]=On+Sale&brand_type=exclusive&start_date=2024-09-01&end_date=2024-09-20&t=1725956611452&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10&store_mongoid[]=5dde3513fdef3a0ce69f9600&group_by=brand";
 
-  const arrSortByColumn = arrColumnTopSales.map((el) => {
-    const newObj = { ...el };
-    newObj.url = `${url}${newObj.url}`;
-    return newObj;
+  describe(`[${process.env.JARVIS_ENV}] Sort Type DESC`, () => {
+    const arrSortByColumnDesc = arrColumnTopSales.map((el) => {
+      const newObj = { ...el };
+      newObj.url = `${url}&order_by=${newObj.field}&order_by_type=DESC`;
+      newObj.expected = true;
+      return newObj;
+    });
+
+    it.each(arrSortByColumnDesc)(
+      "Sort By Column: $sortByColumn -> $expected",
+      async ({ sortByColumn, field, url, expected, dataType }) => {
+        try {
+          const result = await Helpers.getDataFromAxios(url);
+          const data = (result?.data?.data || []).map((el) => {
+            return dataType === "number"
+              ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+              : el[field];
+          });
+          const isDesc = Helpers.isDescending(data);
+          expect(isDesc).toBe(expected);
+        } catch (e) {
+          expect(e.message).toBe(
+            `Unable to fetch gp report sort by column: ${sortByColumn}`
+          );
+        }
+      }
+    );
   });
 
-  it.each(arrSortByColumn)(
-    "Top Sales Sort By Column: $sortByColumn -> $expected",
-    async ({ sortByColumn, url, expected }) => {
-      try {
-        const result = await Helpers.getDataFromAxios(url);
-        expect(result).toMatchObject(expected);
-      } catch (e) {
-        expect(e.message).toBe(
-          `Unable to fetch top sales sort by column: ${sortByColumn}`
-        );
+  describe.skip(`[${process.env.JARVIS_ENV}] Sort Type ASC`, () => {
+    const arrSortByColumnAsc = arrColumnTopSales.map((el) => {
+      const newObj = { ...el };
+      newObj.url = `${url}&order_by=${newObj.field}&order_by_type=ASC`;
+      newObj.expected = true;
+      return newObj;
+    });
+
+    it.each(arrSortByColumnAsc)(
+      "Sort By Column: $sortByColumn -> $expected",
+      async ({ sortByColumn, field, url, expected, dataType }) => {
+        try {
+          const result = await Helpers.getDataFromAxios(url);
+          const data = (result?.data?.data || []).map((el) => {
+            return dataType === "number"
+              ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+              : el[field];
+          });
+          const isAsc = Helpers.isAscending(data);
+          expect(isAsc).toBe(expected);
+        } catch (e) {
+          expect(e.message).toBe(
+            `Unable to fetch gp report sort by column: ${sortByColumn}`
+          );
+        }
       }
-    }
-  );
+    );
+  });
 });
 
 // Top Sales Sort By Column Feature With Filter Business Unit Offline Group By Brand
@@ -516,25 +734,63 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
     urlTopSales +
     "?period_type=monthly&value_type=net&value_mode=before_discount&business_unit=SRI&active_in[]=sociolla&start_date=2024-09-01&end_date=2024-09-20&t=1726630158011&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10&group_by=brand";
 
-  const arrSortByColumn = arrColumnTopSales.map((el) => {
-    const newObj = { ...el };
-    newObj.url = `${url}${newObj.url}`;
-    return newObj;
+  describe(`[${process.env.JARVIS_ENV}] Sort Type DESC`, () => {
+    const arrSortByColumnDesc = arrColumnTopSales.map((el) => {
+      const newObj = { ...el };
+      newObj.url = `${url}&order_by=${newObj.field}&order_by_type=DESC`;
+      newObj.expected = true;
+      return newObj;
+    });
+
+    it.each(arrSortByColumnDesc)(
+      "Sort By Column: $sortByColumn -> $expected",
+      async ({ sortByColumn, field, url, expected, dataType }) => {
+        try {
+          const result = await Helpers.getDataFromAxios(url);
+          const data = (result?.data?.data || []).map((el) => {
+            return dataType === "number"
+              ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+              : el[field];
+          });
+          const isDesc = Helpers.isDescending(data);
+          expect(isDesc).toBe(expected);
+        } catch (e) {
+          expect(e.message).toBe(
+            `Unable to fetch gp report sort by column: ${sortByColumn}`
+          );
+        }
+      }
+    );
   });
 
-  it.each(arrSortByColumn)(
-    "Top Sales Sort By Column: $sortByColumn -> $expected",
-    async ({ sortByColumn, url, expected }) => {
-      try {
-        const result = await Helpers.getDataFromAxios(url);
-        expect(result).toMatchObject(expected);
-      } catch (e) {
-        expect(e.message).toBe(
-          `Unable to fetch top sales sort by column: ${sortByColumn}`
-        );
+  describe.skip(`[${process.env.JARVIS_ENV}] Sort Type ASC`, () => {
+    const arrSortByColumnAsc = arrColumnTopSales.map((el) => {
+      const newObj = { ...el };
+      newObj.url = `${url}&order_by=${newObj.field}&order_by_type=ASC`;
+      newObj.expected = true;
+      return newObj;
+    });
+
+    it.each(arrSortByColumnAsc)(
+      "Sort By Column: $sortByColumn -> $expected",
+      async ({ sortByColumn, field, url, expected, dataType }) => {
+        try {
+          const result = await Helpers.getDataFromAxios(url);
+          const data = (result?.data?.data || []).map((el) => {
+            return dataType === "number"
+              ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+              : el[field];
+          });
+          const isAsc = Helpers.isAscending(data);
+          expect(isAsc).toBe(expected);
+        } catch (e) {
+          expect(e.message).toBe(
+            `Unable to fetch gp report sort by column: ${sortByColumn}`
+          );
+        }
       }
-    }
-  );
+    );
+  });
 });
 
 // Top Sales Sort By Column Feature With Filter Default Group By Category
@@ -543,25 +799,63 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
     urlTopSales +
     "?period_type=monthly&value_type=net&value_mode=before_discount&active_in[]=sociolla&start_date=2024-09-01&end_date=2024-09-20&t=1726556945503&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10&group_by=category";
 
-  const arrSortByColumn = arrColumnTopSales.map((el) => {
-    const newObj = { ...el };
-    newObj.url = `${url}${newObj.url}`;
-    return newObj;
+  describe(`[${process.env.JARVIS_ENV}] Sort Type DESC`, () => {
+    const arrSortByColumnDesc = arrColumnTopSales.map((el) => {
+      const newObj = { ...el };
+      newObj.url = `${url}&order_by=${newObj.field}&order_by_type=DESC`;
+      newObj.expected = true;
+      return newObj;
+    });
+
+    it.each(arrSortByColumnDesc)(
+      "Sort By Column: $sortByColumn -> $expected",
+      async ({ sortByColumn, field, url, expected, dataType }) => {
+        try {
+          const result = await Helpers.getDataFromAxios(url);
+          const data = (result?.data?.data || []).map((el) => {
+            return dataType === "number"
+              ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+              : el[field];
+          });
+          const isDesc = Helpers.isDescending(data);
+          expect(isDesc).toBe(expected);
+        } catch (e) {
+          expect(e.message).toBe(
+            `Unable to fetch gp report sort by column: ${sortByColumn}`
+          );
+        }
+      }
+    );
   });
 
-  it.each(arrSortByColumn)(
-    "Top Sales Sort By Column: $sortByColumn -> $expected",
-    async ({ sortByColumn, url, expected }) => {
-      try {
-        const result = await Helpers.getDataFromAxios(url);
-        expect(result).toMatchObject(expected);
-      } catch (e) {
-        expect(e.message).toBe(
-          `Unable to fetch top sales sort by column: ${sortByColumn}`
-        );
+  describe.skip(`[${process.env.JARVIS_ENV}] Sort Type ASC`, () => {
+    const arrSortByColumnAsc = arrColumnTopSales.map((el) => {
+      const newObj = { ...el };
+      newObj.url = `${url}&order_by=${newObj.field}&order_by_type=ASC`;
+      newObj.expected = true;
+      return newObj;
+    });
+
+    it.each(arrSortByColumnAsc)(
+      "Sort By Column: $sortByColumn -> $expected",
+      async ({ sortByColumn, field, url, expected, dataType }) => {
+        try {
+          const result = await Helpers.getDataFromAxios(url);
+          const data = (result?.data?.data || []).map((el) => {
+            return dataType === "number"
+              ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+              : el[field];
+          });
+          const isAsc = Helpers.isAscending(data);
+          expect(isAsc).toBe(expected);
+        } catch (e) {
+          expect(e.message).toBe(
+            `Unable to fetch gp report sort by column: ${sortByColumn}`
+          );
+        }
       }
-    }
-  );
+    );
+  });
 });
 
 // Top Sales Sort By Column Feature With All Filter Group By Category
@@ -570,25 +864,63 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
     urlTopSales +
     "?order_platform[]=offline_store&store[]=6&period_type=monthly&value_type=net&value_mode=before_discount&business_unit=SRI&active_in[]=sociolla&order_type[]=On+Sale&brand_type=exclusive&start_date=2024-09-01&end_date=2024-09-20&t=1725956611452&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10&store_mongoid[]=5dde3513fdef3a0ce69f9600&group_by=category";
 
-  const arrSortByColumn = arrColumnTopSales.map((el) => {
-    const newObj = { ...el };
-    newObj.url = `${url}${newObj.url}`;
-    return newObj;
+  describe(`[${process.env.JARVIS_ENV}] Sort Type DESC`, () => {
+    const arrSortByColumnDesc = arrColumnTopSales.map((el) => {
+      const newObj = { ...el };
+      newObj.url = `${url}&order_by=${newObj.field}&order_by_type=DESC`;
+      newObj.expected = true;
+      return newObj;
+    });
+
+    it.each(arrSortByColumnDesc)(
+      "Sort By Column: $sortByColumn -> $expected",
+      async ({ sortByColumn, field, url, expected, dataType }) => {
+        try {
+          const result = await Helpers.getDataFromAxios(url);
+          const data = (result?.data?.data || []).map((el) => {
+            return dataType === "number"
+              ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+              : el[field];
+          });
+          const isDesc = Helpers.isDescending(data);
+          expect(isDesc).toBe(expected);
+        } catch (e) {
+          expect(e.message).toBe(
+            `Unable to fetch gp report sort by column: ${sortByColumn}`
+          );
+        }
+      }
+    );
   });
 
-  it.each(arrSortByColumn)(
-    "Top Sales Sort By Column: $sortByColumn -> $expected",
-    async ({ sortByColumn, url, expected }) => {
-      try {
-        const result = await Helpers.getDataFromAxios(url);
-        expect(result).toMatchObject(expected);
-      } catch (e) {
-        expect(e.message).toBe(
-          `Unable to fetch top sales sort by column: ${sortByColumn}`
-        );
+  describe.skip(`[${process.env.JARVIS_ENV}] Sort Type ASC`, () => {
+    const arrSortByColumnAsc = arrColumnTopSales.map((el) => {
+      const newObj = { ...el };
+      newObj.url = `${url}&order_by=${newObj.field}&order_by_type=ASC`;
+      newObj.expected = true;
+      return newObj;
+    });
+
+    it.each(arrSortByColumnAsc)(
+      "Sort By Column: $sortByColumn -> $expected",
+      async ({ sortByColumn, field, url, expected, dataType }) => {
+        try {
+          const result = await Helpers.getDataFromAxios(url);
+          const data = (result?.data?.data || []).map((el) => {
+            return dataType === "number"
+              ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+              : el[field];
+          });
+          const isAsc = Helpers.isAscending(data);
+          expect(isAsc).toBe(expected);
+        } catch (e) {
+          expect(e.message).toBe(
+            `Unable to fetch gp report sort by column: ${sortByColumn}`
+          );
+        }
       }
-    }
-  );
+    );
+  });
 });
 
 // Top Sales Sort By Column Feature With Filter Business Unit Offline Group By Category
@@ -597,25 +929,63 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
     urlTopSales +
     "?period_type=monthly&value_type=net&value_mode=before_discount&business_unit=SRI&active_in[]=sociolla&start_date=2024-09-01&end_date=2024-09-20&t=1726630158011&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10&group_by=category";
 
-  const arrSortByColumn = arrColumnTopSales.map((el) => {
-    const newObj = { ...el };
-    newObj.url = `${url}${newObj.url}`;
-    return newObj;
+  describe(`[${process.env.JARVIS_ENV}] Sort Type DESC`, () => {
+    const arrSortByColumnDesc = arrColumnTopSales.map((el) => {
+      const newObj = { ...el };
+      newObj.url = `${url}&order_by=${newObj.field}&order_by_type=DESC`;
+      newObj.expected = true;
+      return newObj;
+    });
+
+    it.each(arrSortByColumnDesc)(
+      "Sort By Column: $sortByColumn -> $expected",
+      async ({ sortByColumn, field, url, expected, dataType }) => {
+        try {
+          const result = await Helpers.getDataFromAxios(url);
+          const data = (result?.data?.data || []).map((el) => {
+            return dataType === "number"
+              ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+              : el[field];
+          });
+          const isDesc = Helpers.isDescending(data);
+          expect(isDesc).toBe(expected);
+        } catch (e) {
+          expect(e.message).toBe(
+            `Unable to fetch gp report sort by column: ${sortByColumn}`
+          );
+        }
+      }
+    );
   });
 
-  it.each(arrSortByColumn)(
-    "Top Sales Sort By Column: $sortByColumn -> $expected",
-    async ({ sortByColumn, url, expected }) => {
-      try {
-        const result = await Helpers.getDataFromAxios(url);
-        expect(result).toMatchObject(expected);
-      } catch (e) {
-        expect(e.message).toBe(
-          `Unable to fetch top sales sort by column: ${sortByColumn}`
-        );
+  describe.skip(`[${process.env.JARVIS_ENV}] Sort Type ASC`, () => {
+    const arrSortByColumnAsc = arrColumnTopSales.map((el) => {
+      const newObj = { ...el };
+      newObj.url = `${url}&order_by=${newObj.field}&order_by_type=ASC`;
+      newObj.expected = true;
+      return newObj;
+    });
+
+    it.each(arrSortByColumnAsc)(
+      "Sort By Column: $sortByColumn -> $expected",
+      async ({ sortByColumn, field, url, expected, dataType }) => {
+        try {
+          const result = await Helpers.getDataFromAxios(url);
+          const data = (result?.data?.data || []).map((el) => {
+            return dataType === "number"
+              ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+              : el[field];
+          });
+          const isAsc = Helpers.isAscending(data);
+          expect(isAsc).toBe(expected);
+        } catch (e) {
+          expect(e.message).toBe(
+            `Unable to fetch gp report sort by column: ${sortByColumn}`
+          );
+        }
       }
-    }
-  );
+    );
+  });
 });
 
 // Top Sales Sort By Column Feature With Filter Default Group By Product
@@ -624,25 +994,63 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
     urlTopSales +
     "?period_type=monthly&value_type=net&value_mode=before_discount&active_in[]=sociolla&start_date=2024-09-01&end_date=2024-09-20&t=1726556945503&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10&group_by=product";
 
-  const arrSortByColumn = arrColumnTopSales.map((el) => {
-    const newObj = { ...el };
-    newObj.url = `${url}${newObj.url}`;
-    return newObj;
+  describe(`[${process.env.JARVIS_ENV}] Sort Type DESC`, () => {
+    const arrSortByColumnDesc = arrColumnTopSales.map((el) => {
+      const newObj = { ...el };
+      newObj.url = `${url}&order_by=${newObj.field}&order_by_type=DESC`;
+      newObj.expected = true;
+      return newObj;
+    });
+
+    it.each(arrSortByColumnDesc)(
+      "Sort By Column: $sortByColumn -> $expected",
+      async ({ sortByColumn, field, url, expected, dataType }) => {
+        try {
+          const result = await Helpers.getDataFromAxios(url);
+          const data = (result?.data?.data || []).map((el) => {
+            return dataType === "number"
+              ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+              : el[field];
+          });
+          const isDesc = Helpers.isDescending(data);
+          expect(isDesc).toBe(expected);
+        } catch (e) {
+          expect(e.message).toBe(
+            `Unable to fetch gp report sort by column: ${sortByColumn}`
+          );
+        }
+      }
+    );
   });
 
-  it.each(arrSortByColumn)(
-    "Top Sales Sort By Column: $sortByColumn -> $expected",
-    async ({ sortByColumn, url, expected }) => {
-      try {
-        const result = await Helpers.getDataFromAxios(url);
-        expect(result).toMatchObject(expected);
-      } catch (e) {
-        expect(e.message).toBe(
-          `Unable to fetch top sales sort by column: ${sortByColumn}`
-        );
+  describe.skip(`[${process.env.JARVIS_ENV}] Sort Type ASC`, () => {
+    const arrSortByColumnAsc = arrColumnTopSales.map((el) => {
+      const newObj = { ...el };
+      newObj.url = `${url}&order_by=${newObj.field}&order_by_type=ASC`;
+      newObj.expected = true;
+      return newObj;
+    });
+
+    it.each(arrSortByColumnAsc)(
+      "Sort By Column: $sortByColumn -> $expected",
+      async ({ sortByColumn, field, url, expected, dataType }) => {
+        try {
+          const result = await Helpers.getDataFromAxios(url);
+          const data = (result?.data?.data || []).map((el) => {
+            return dataType === "number"
+              ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+              : el[field];
+          });
+          const isAsc = Helpers.isAscending(data);
+          expect(isAsc).toBe(expected);
+        } catch (e) {
+          expect(e.message).toBe(
+            `Unable to fetch gp report sort by column: ${sortByColumn}`
+          );
+        }
       }
-    }
-  );
+    );
+  });
 });
 
 // Top Sales Sort By Column Feature With All Filter Group By Product
@@ -651,25 +1059,63 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
     urlTopSales +
     "?order_platform[]=offline_store&store[]=6&period_type=monthly&value_type=net&value_mode=before_discount&business_unit=SRI&active_in[]=sociolla&order_type[]=On+Sale&brand_type=exclusive&start_date=2024-09-01&end_date=2024-09-20&t=1725956611452&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10&store_mongoid[]=5dde3513fdef3a0ce69f9600&group_by=product";
 
-  const arrSortByColumn = arrColumnTopSales.map((el) => {
-    const newObj = { ...el };
-    newObj.url = `${url}${newObj.url}`;
-    return newObj;
+  describe(`[${process.env.JARVIS_ENV}] Sort Type DESC`, () => {
+    const arrSortByColumnDesc = arrColumnTopSales.map((el) => {
+      const newObj = { ...el };
+      newObj.url = `${url}&order_by=${newObj.field}&order_by_type=DESC`;
+      newObj.expected = true;
+      return newObj;
+    });
+
+    it.each(arrSortByColumnDesc)(
+      "Sort By Column: $sortByColumn -> $expected",
+      async ({ sortByColumn, field, url, expected, dataType }) => {
+        try {
+          const result = await Helpers.getDataFromAxios(url);
+          const data = (result?.data?.data || []).map((el) => {
+            return dataType === "number"
+              ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+              : el[field];
+          });
+          const isDesc = Helpers.isDescending(data);
+          expect(isDesc).toBe(expected);
+        } catch (e) {
+          expect(e.message).toBe(
+            `Unable to fetch gp report sort by column: ${sortByColumn}`
+          );
+        }
+      }
+    );
   });
 
-  it.each(arrSortByColumn)(
-    "Top Sales Sort By Column: $sortByColumn -> $expected",
-    async ({ sortByColumn, url, expected }) => {
-      try {
-        const result = await Helpers.getDataFromAxios(url);
-        expect(result).toMatchObject(expected);
-      } catch (e) {
-        expect(e.message).toBe(
-          `Unable to fetch top sales sort by column: ${sortByColumn}`
-        );
+  describe.skip(`[${process.env.JARVIS_ENV}] Sort Type ASC`, () => {
+    const arrSortByColumnAsc = arrColumnTopSales.map((el) => {
+      const newObj = { ...el };
+      newObj.url = `${url}&order_by=${newObj.field}&order_by_type=ASC`;
+      newObj.expected = true;
+      return newObj;
+    });
+
+    it.each(arrSortByColumnAsc)(
+      "Sort By Column: $sortByColumn -> $expected",
+      async ({ sortByColumn, field, url, expected, dataType }) => {
+        try {
+          const result = await Helpers.getDataFromAxios(url);
+          const data = (result?.data?.data || []).map((el) => {
+            return dataType === "number"
+              ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+              : el[field];
+          });
+          const isAsc = Helpers.isAscending(data);
+          expect(isAsc).toBe(expected);
+        } catch (e) {
+          expect(e.message).toBe(
+            `Unable to fetch gp report sort by column: ${sortByColumn}`
+          );
+        }
       }
-    }
-  );
+    );
+  });
 });
 
 // Top Sales Sort By Column Feature With Filter Business Unit Offline Group By Product
@@ -678,23 +1124,61 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
     urlTopSales +
     "?period_type=monthly&value_type=net&value_mode=before_discount&business_unit=SRI&active_in[]=sociolla&start_date=2024-09-01&end_date=2024-09-20&t=1726630158011&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10&group_by=product";
 
-  const arrSortByColumn = arrColumnTopSales.map((el) => {
-    const newObj = { ...el };
-    newObj.url = `${url}${newObj.url}`;
-    return newObj;
+  describe(`[${process.env.JARVIS_ENV}] Sort Type DESC`, () => {
+    const arrSortByColumnDesc = arrColumnTopSales.map((el) => {
+      const newObj = { ...el };
+      newObj.url = `${url}&order_by=${newObj.field}&order_by_type=DESC`;
+      newObj.expected = true;
+      return newObj;
+    });
+
+    it.each(arrSortByColumnDesc)(
+      "Sort By Column: $sortByColumn -> $expected",
+      async ({ sortByColumn, field, url, expected, dataType }) => {
+        try {
+          const result = await Helpers.getDataFromAxios(url);
+          const data = (result?.data?.data || []).map((el) => {
+            return dataType === "number"
+              ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+              : el[field];
+          });
+          const isDesc = Helpers.isDescending(data);
+          expect(isDesc).toBe(expected);
+        } catch (e) {
+          expect(e.message).toBe(
+            `Unable to fetch gp report sort by column: ${sortByColumn}`
+          );
+        }
+      }
+    );
   });
 
-  it.each(arrSortByColumn)(
-    "Top Sales Sort By Column: $sortByColumn -> $expected",
-    async ({ sortByColumn, url, expected }) => {
-      try {
-        const result = await Helpers.getDataFromAxios(url);
-        expect(result).toMatchObject(expected);
-      } catch (e) {
-        expect(e.message).toBe(
-          `Unable to fetch top sales sort by column: ${sortByColumn}`
-        );
+  describe.skip(`[${process.env.JARVIS_ENV}] Sort Type ASC`, () => {
+    const arrSortByColumnAsc = arrColumnTopSales.map((el) => {
+      const newObj = { ...el };
+      newObj.url = `${url}&order_by=${newObj.field}&order_by_type=ASC`;
+      newObj.expected = true;
+      return newObj;
+    });
+
+    it.each(arrSortByColumnAsc)(
+      "Sort By Column: $sortByColumn -> $expected",
+      async ({ sortByColumn, field, url, expected, dataType }) => {
+        try {
+          const result = await Helpers.getDataFromAxios(url);
+          const data = (result?.data?.data || []).map((el) => {
+            return dataType === "number"
+              ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+              : el[field];
+          });
+          const isAsc = Helpers.isAscending(data);
+          expect(isAsc).toBe(expected);
+        } catch (e) {
+          expect(e.message).toBe(
+            `Unable to fetch gp report sort by column: ${sortByColumn}`
+          );
+        }
       }
-    }
-  );
+    );
+  });
 });
