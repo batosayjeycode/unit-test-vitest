@@ -4,102 +4,122 @@ const Helpers = require("./helpers");
 const arrColumn = [
   {
     sortByColumn: "ORDER DATE",
-    url: "&order_by=order_date&order_by_type=DESC",
+    field: "order_date",
+    dataType: "string",
     expected: { success: true },
   },
   {
     sortByColumn: "ORDER ID",
-    url: "&order_by=id_order&order_by_type=DESC",
+    field: "id_order",
+    dataType: "string",
     expected: { success: true },
   },
   {
     sortByColumn: "REFERENCE",
-    url: "&order_by=reference&order_by_type=DESC",
+    field: "reference",
+    dataType: "string",
     expected: { success: true },
   },
   {
     sortByColumn: "VOUCHER CODE",
-    url: "&order_by=voucher_name_applied&order_by_type=DESC",
+    field: "voucher_name_applied",
+    dataType: "string",
     expected: { success: true },
   },
   {
     sortByColumn: "PAYMENT",
-    url: "&order_by=order_payment&order_by_type=DESC",
+    field: "order_payment",
+    dataType: "string",
     expected: { success: true },
   },
   {
     sortByColumn: "EMAIL",
-    url: "&order_by=email&order_by_type=DESC",
+    field: "email",
+    dataType: "string",
     expected: { success: true },
   },
   {
     sortByColumn: "PROVINCE",
-    url: "&order_by=delivery_province&order_by_type=DESC",
+    field: "delivery_province",
+    dataType: "string",
     expected: { success: true },
   },
   {
     sortByColumn: "CITY",
-    url: "&order_by=delivery_city&order_by_type=DESC",
+    field: "delivery_city",
+    dataType: "string",
     expected: { success: true },
   },
   {
     sortByColumn: "TOTAL PAID",
-    url: "&order_by=total_order_paid&order_by_type=DESC",
+    field: "total_order_paid",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "TOTAL VOUCHER AMOUNT",
-    url: "&order_by=total_order_voucher&order_by_type=DESC",
+    field: "total_order_voucher",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "TOTAL SHIPPING",
-    url: "&order_by=total_order_shipping&order_by_type=DESC",
+    field: "total_order_shipping",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "STATUS",
-    url: "&order_by=order_state&order_by_type=DESC",
+    field: "order_state",
+    dataType: "string",
     expected: { success: true },
   },
   {
     sortByColumn: "IS MANUAL ORDER",
-    url: "&order_by=is_manual_order&order_by_type=DESC",
+    field: "is_manual_order",
+    dataType: "string",
     expected: { success: true },
   },
   {
     sortByColumn: "CASHIER",
-    url: "&order_by=offlinestore_cashier&order_by_type=DESC",
+    field: "offlinestore_cashier",
+    dataType: "string",
     expected: { success: true },
   },
   {
     sortByColumn: "BA CODE",
-    url: "&order_by=offlinestore_ba_code&order_by_type=DESC",
+    field: "offlinestore_ba_code",
+    dataType: "string",
     expected: { success: true },
   },
   {
     sortByColumn: "EDC TYPE",
-    url: "&order_by=edc_type&order_by_type=DESC",
+    field: "edc_type",
+    dataType: "string",
     expected: { success: true },
   },
   {
     sortByColumn: "PLATFORM",
-    url: "&order_by=order_platform&order_by_type=DESC",
+    field: "order_platform",
+    dataType: "string",
     expected: { success: true },
   },
   {
     sortByColumn: "SHIPPED DATE",
-    url: "&order_by=shipped_date&order_by_type=DESC",
+    field: "shipped_date",
+    dataType: "string",
     expected: { success: true },
   },
   {
     sortByColumn: "DELIVERED DATE",
-    url: "&order_by=delivered_date&order_by_type=DESC",
+    field: "delivered_date",
+    dataType: "string",
     expected: { success: true },
   },
   {
     sortByColumn: "IS RESELLER",
-    url: "&order_by=is_reseller&order_by_type=DESC",
+    field: "is_reseller",
+    dataType: "string",
     expected: { success: true },
   },
 ];
@@ -119,25 +139,63 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales New All Order`, () => {
       }
     });
 
-    const arrSortByColumn = arrColumn.map((el) => {
-      const newObj = { ...el };
-      newObj.url = `${url}${newObj.url}`;
-      return newObj;
+    describe.skip(`[${process.env.JARVIS_ENV}] Sort Type DESC`, () => {
+      const arrSortByColumnDesc = arrColumn.map((el) => {
+        const newObj = { ...el };
+        newObj.url = `${url}&order_by=${newObj.field}&order_by_type=DESC`;
+        newObj.expected = true;
+        return newObj;
+      });
+
+      it.each(arrSortByColumnDesc)(
+        "Sort By Column: $sortByColumn -> $expected",
+        async ({ sortByColumn, field, url, expected, dataType }) => {
+          try {
+            const result = await Helpers.getDataFromAxios(url);
+            const data = (result?.data?.data || []).map((el) => {
+              return dataType === "number"
+                ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+                : el[field];
+            });
+            const isDesc = Helpers.isDescending(data);
+            expect(isDesc).toBe(expected);
+          } catch (e) {
+            expect(e.message).toBe(
+              `Unable to fetch gp report sort by column: ${sortByColumn}`
+            );
+          }
+        }
+      );
     });
 
-    it.skip.each(arrSortByColumn)(
-      "With Sort By Column: $sortByColumn -> $expected",
-      async ({ sortByColumn, url, expected }) => {
-        try {
-          const result = await Helpers.getDataFromAxios(url);
-          expect(result).toMatchObject(expected);
-        } catch (e) {
-          expect(e.message).toBe(
-            `Unable to fetch all order sort by column: ${sortByColumn}`
-          );
+    describe.skip(`[${process.env.JARVIS_ENV}] Sort Type ASC`, () => {
+      const arrSortByColumnAsc = arrColumn.map((el) => {
+        const newObj = { ...el };
+        newObj.url = `${url}&order_by=${newObj.field}&order_by_type=ASC`;
+        newObj.expected = true;
+        return newObj;
+      });
+
+      it.each(arrSortByColumnAsc)(
+        "Sort By Column: $sortByColumn -> $expected",
+        async ({ sortByColumn, field, url, expected, dataType }) => {
+          try {
+            const result = await Helpers.getDataFromAxios(url);
+            const data = (result?.data?.data || []).map((el) => {
+              return dataType === "number"
+                ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+                : el[field];
+            });
+            const isAsc = Helpers.isAscending(data);
+            expect(isAsc).toBe(expected);
+          } catch (e) {
+            expect(e.message).toBe(
+              `Unable to fetch gp report sort by column: ${sortByColumn}`
+            );
+          }
         }
-      }
-    );
+      );
+    });
   });
 
   describe(`[${process.env.JARVIS_ENV}] Some Filter Without Group Platform`, () => {
@@ -154,25 +212,63 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales New All Order`, () => {
       }
     });
 
-    const arrSortByColumn = arrColumn.map((el) => {
-      const newObj = { ...el };
-      newObj.url = `${url}${newObj.url}`;
-      return newObj;
+    describe.skip(`[${process.env.JARVIS_ENV}] Sort Type DESC`, () => {
+      const arrSortByColumnDesc = arrColumn.map((el) => {
+        const newObj = { ...el };
+        newObj.url = `${url}&order_by=${newObj.field}&order_by_type=DESC`;
+        newObj.expected = true;
+        return newObj;
+      });
+
+      it.each(arrSortByColumnDesc)(
+        "Sort By Column: $sortByColumn -> $expected",
+        async ({ sortByColumn, field, url, expected, dataType }) => {
+          try {
+            const result = await Helpers.getDataFromAxios(url);
+            const data = (result?.data?.data || []).map((el) => {
+              return dataType === "number"
+                ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+                : el[field];
+            });
+            const isDesc = Helpers.isDescending(data);
+            expect(isDesc).toBe(expected);
+          } catch (e) {
+            expect(e.message).toBe(
+              `Unable to fetch gp report sort by column: ${sortByColumn}`
+            );
+          }
+        }
+      );
     });
 
-    it.skip.each(arrSortByColumn)(
-      "With Sort By Column: $sortByColumn -> $expected",
-      async ({ sortByColumn, url, expected }) => {
-        try {
-          const result = await Helpers.getDataFromAxios(url);
-          expect(result).toMatchObject(expected);
-        } catch (e) {
-          expect(e.message).toBe(
-            `Unable to fetch all order sort by column: ${sortByColumn}`
-          );
+    describe.skip(`[${process.env.JARVIS_ENV}] Sort Type ASC`, () => {
+      const arrSortByColumnAsc = arrColumn.map((el) => {
+        const newObj = { ...el };
+        newObj.url = `${url}&order_by=${newObj.field}&order_by_type=ASC`;
+        newObj.expected = true;
+        return newObj;
+      });
+
+      it.each(arrSortByColumnAsc)(
+        "Sort By Column: $sortByColumn -> $expected",
+        async ({ sortByColumn, field, url, expected, dataType }) => {
+          try {
+            const result = await Helpers.getDataFromAxios(url);
+            const data = (result?.data?.data || []).map((el) => {
+              return dataType === "number"
+                ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+                : el[field];
+            });
+            const isAsc = Helpers.isAscending(data);
+            expect(isAsc).toBe(expected);
+          } catch (e) {
+            expect(e.message).toBe(
+              `Unable to fetch gp report sort by column: ${sortByColumn}`
+            );
+          }
         }
-      }
-    );
+      );
+    });
   });
 
   describe(`[${process.env.JARVIS_ENV}] Some Filter With Group Platform`, () => {
@@ -189,25 +285,63 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales New All Order`, () => {
       }
     });
 
-    const arrSortByColumn = arrColumn.map((el) => {
-      const newObj = { ...el };
-      newObj.url = `${url}${newObj.url}`;
-      return newObj;
+    describe.skip(`[${process.env.JARVIS_ENV}] Sort Type DESC`, () => {
+      const arrSortByColumnDesc = arrColumn.map((el) => {
+        const newObj = { ...el };
+        newObj.url = `${url}&order_by=${newObj.field}&order_by_type=DESC`;
+        newObj.expected = true;
+        return newObj;
+      });
+
+      it.each(arrSortByColumnDesc)(
+        "Sort By Column: $sortByColumn -> $expected",
+        async ({ sortByColumn, field, url, expected, dataType }) => {
+          try {
+            const result = await Helpers.getDataFromAxios(url);
+            const data = (result?.data?.data || []).map((el) => {
+              return dataType === "number"
+                ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+                : el[field];
+            });
+            const isDesc = Helpers.isDescending(data);
+            expect(isDesc).toBe(expected);
+          } catch (e) {
+            expect(e.message).toBe(
+              `Unable to fetch gp report sort by column: ${sortByColumn}`
+            );
+          }
+        }
+      );
     });
 
-    it.skip.each(arrSortByColumn)(
-      "With Sort By Column: $sortByColumn -> $expected",
-      async ({ sortByColumn, url, expected }) => {
-        try {
-          const result = await Helpers.getDataFromAxios(url);
-          expect(result).toMatchObject(expected);
-        } catch (e) {
-          expect(e.message).toBe(
-            `Unable to fetch all order sort by column: ${sortByColumn}`
-          );
+    describe.skip(`[${process.env.JARVIS_ENV}] Sort Type ASC`, () => {
+      const arrSortByColumnAsc = arrColumn.map((el) => {
+        const newObj = { ...el };
+        newObj.url = `${url}&order_by=${newObj.field}&order_by_type=ASC`;
+        newObj.expected = true;
+        return newObj;
+      });
+
+      it.each(arrSortByColumnAsc)(
+        "Sort By Column: $sortByColumn -> $expected",
+        async ({ sortByColumn, field, url, expected, dataType }) => {
+          try {
+            const result = await Helpers.getDataFromAxios(url);
+            const data = (result?.data?.data || []).map((el) => {
+              return dataType === "number"
+                ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+                : el[field];
+            });
+            const isAsc = Helpers.isAscending(data);
+            expect(isAsc).toBe(expected);
+          } catch (e) {
+            expect(e.message).toBe(
+              `Unable to fetch gp report sort by column: ${sortByColumn}`
+            );
+          }
         }
-      }
-    );
+      );
+    });
   });
 
   describe(`[${process.env.JARVIS_ENV}] Filter Default With Business Unit Offline`, () => {
@@ -224,25 +358,63 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales New All Order`, () => {
       }
     });
 
-    const arrSortByColumn = arrColumn.map((el) => {
-      const newObj = { ...el };
-      newObj.url = `${url}${newObj.url}`;
-      return newObj;
+    describe.skip(`[${process.env.JARVIS_ENV}] Sort Type DESC`, () => {
+      const arrSortByColumnDesc = arrColumn.map((el) => {
+        const newObj = { ...el };
+        newObj.url = `${url}&order_by=${newObj.field}&order_by_type=DESC`;
+        newObj.expected = true;
+        return newObj;
+      });
+
+      it.each(arrSortByColumnDesc)(
+        "Sort By Column: $sortByColumn -> $expected",
+        async ({ sortByColumn, field, url, expected, dataType }) => {
+          try {
+            const result = await Helpers.getDataFromAxios(url);
+            const data = (result?.data?.data || []).map((el) => {
+              return dataType === "number"
+                ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+                : el[field];
+            });
+            const isDesc = Helpers.isDescending(data);
+            expect(isDesc).toBe(expected);
+          } catch (e) {
+            expect(e.message).toBe(
+              `Unable to fetch gp report sort by column: ${sortByColumn}`
+            );
+          }
+        }
+      );
     });
 
-    it.skip.each(arrSortByColumn)(
-      "With Sort By Column: $sortByColumn -> $expected",
-      async ({ sortByColumn, url, expected }) => {
-        try {
-          const result = await Helpers.getDataFromAxios(url);
-          expect(result).toMatchObject(expected);
-        } catch (e) {
-          expect(e.message).toBe(
-            `Unable to fetch all order sort by column: ${sortByColumn}`
-          );
+    describe.skip(`[${process.env.JARVIS_ENV}] Sort Type ASC`, () => {
+      const arrSortByColumnAsc = arrColumn.map((el) => {
+        const newObj = { ...el };
+        newObj.url = `${url}&order_by=${newObj.field}&order_by_type=ASC`;
+        newObj.expected = true;
+        return newObj;
+      });
+
+      it.each(arrSortByColumnAsc)(
+        "Sort By Column: $sortByColumn -> $expected",
+        async ({ sortByColumn, field, url, expected, dataType }) => {
+          try {
+            const result = await Helpers.getDataFromAxios(url);
+            const data = (result?.data?.data || []).map((el) => {
+              return dataType === "number"
+                ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+                : el[field];
+            });
+            const isAsc = Helpers.isAscending(data);
+            expect(isAsc).toBe(expected);
+          } catch (e) {
+            expect(e.message).toBe(
+              `Unable to fetch gp report sort by column: ${sortByColumn}`
+            );
+          }
         }
-      }
-    );
+      );
+    });
   });
 
   describe(`[${process.env.JARVIS_ENV}] Some Filter With Business Unit Offline`, () => {
@@ -259,24 +431,62 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales New All Order`, () => {
       }
     });
 
-    const arrSortByColumn = arrColumn.map((el) => {
-      const newObj = { ...el };
-      newObj.url = `${url}${newObj.url}`;
-      return newObj;
+    describe.skip(`[${process.env.JARVIS_ENV}] Sort Type DESC`, () => {
+      const arrSortByColumnDesc = arrColumn.map((el) => {
+        const newObj = { ...el };
+        newObj.url = `${url}&order_by=${newObj.field}&order_by_type=DESC`;
+        newObj.expected = true;
+        return newObj;
+      });
+
+      it.each(arrSortByColumnDesc)(
+        "Sort By Column: $sortByColumn -> $expected",
+        async ({ sortByColumn, field, url, expected, dataType }) => {
+          try {
+            const result = await Helpers.getDataFromAxios(url);
+            const data = (result?.data?.data || []).map((el) => {
+              return dataType === "number"
+                ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+                : el[field];
+            });
+            const isDesc = Helpers.isDescending(data);
+            expect(isDesc).toBe(expected);
+          } catch (e) {
+            expect(e.message).toBe(
+              `Unable to fetch gp report sort by column: ${sortByColumn}`
+            );
+          }
+        }
+      );
     });
 
-    it.skip.each(arrSortByColumn)(
-      "With Sort By Column: $sortByColumn -> $expected",
-      async ({ sortByColumn, url, expected }) => {
-        try {
-          const result = await Helpers.getDataFromAxios(url);
-          expect(result).toMatchObject(expected);
-        } catch (e) {
-          expect(e.message).toBe(
-            `Unable to fetch all order sort by column: ${sortByColumn}`
-          );
+    describe.skip(`[${process.env.JARVIS_ENV}] Sort Type ASC`, () => {
+      const arrSortByColumnAsc = arrColumn.map((el) => {
+        const newObj = { ...el };
+        newObj.url = `${url}&order_by=${newObj.field}&order_by_type=ASC`;
+        newObj.expected = true;
+        return newObj;
+      });
+
+      it.each(arrSortByColumnAsc)(
+        "Sort By Column: $sortByColumn -> $expected",
+        async ({ sortByColumn, field, url, expected, dataType }) => {
+          try {
+            const result = await Helpers.getDataFromAxios(url);
+            const data = (result?.data?.data || []).map((el) => {
+              return dataType === "number"
+                ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+                : el[field];
+            });
+            const isAsc = Helpers.isAscending(data);
+            expect(isAsc).toBe(expected);
+          } catch (e) {
+            expect(e.message).toBe(
+              `Unable to fetch gp report sort by column: ${sortByColumn}`
+            );
+          }
         }
-      }
-    );
+      );
+    });
   });
 });
