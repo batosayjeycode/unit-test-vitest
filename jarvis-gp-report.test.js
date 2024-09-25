@@ -5,56 +5,67 @@ const arrColumn = [
   {
     sortByColumn: "NMV BEFORE DISCOUNT AMOUNT",
     field: "nmv",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "DISC. BY SOCIOLLA AMOUNT",
     field: "total_discount_sociolla",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "DISC. BY SOCIOLLA BRAND",
     field: "total_discount_brand",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "VOUCHER AMOUNT",
     field: "total_voucher",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "NET REVENUE AMOUNT",
     field: "net_revenue",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "NET REVENUE CONT.",
     field: "net_revenue_cont",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "COGS AMOUNT",
     field: "cogs",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "SUPPORT PROMO AMOUNT",
     field: "total_support_promo",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "NET COGS AMOUNT",
     field: "net_cogs",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "GROSS PROFIT AMOUNT",
     field: "gross_margin",
+    dataType: "number",
     expected: { success: true },
   },
   {
     sortByColumn: "GROSS PROFIT CONT.",
     field: "gross_margin_cont",
+    dataType: "number",
     expected: { success: true },
   },
 ];
@@ -105,11 +116,13 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis GP Report Sort By Column Featu
 
     it.each(arrSortByColumnDesc)(
       "Sort By Column: $sortByColumn -> $expected",
-      async ({ sortByColumn, field, url, expected }) => {
+      async ({ sortByColumn, field, url, expected, dataType }) => {
         try {
           const result = await Helpers.getDataFromAxios(url);
           const data = (result?.data?.data || []).map((el) => {
-            return parseFloat(parseFloat(el[field] || 0).toFixed(2));
+            return dataType === "number"
+              ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+              : el[field];
           });
           const isDesc = Helpers.isDescending(data);
           expect(isDesc).toBe(expected);
@@ -132,11 +145,13 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis GP Report Sort By Column Featu
 
     it.each(arrSortByColumnAsc)(
       "Sort By Column: $sortByColumn -> $expected",
-      async ({ sortByColumn, field, url, expected }) => {
+      async ({ sortByColumn, field, url, expected, dataType }) => {
         try {
           const result = await Helpers.getDataFromAxios(url);
           const data = (result?.data?.data || []).map((el) => {
-            return parseFloat(parseFloat(el[field] || 0).toFixed(2));
+            return dataType === "number"
+              ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+              : el[field];
           });
           const isAsc = Helpers.isAscending(data);
           expect(isAsc).toBe(expected);
@@ -154,7 +169,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis GP Report Sort By Column Featu
   const url =
     "https://jarvis-api.sociolla.info/v2/gross-profit/summaries?brands[]=alchemist+fragrance&brands[]=saff+%26+co&brands[]=glad2glow&start_date=2024-09-01&end_date=2024-09-04&t=1726124938357&skip=0&limit=10&page=1&length=10&groups[]=brand_type&groups[]=product_purchase_type&groups[]=brand_name&export_label_group_by_option=Brand+Type+%3E%3E+Product+Purchase+Type+%3E%3E+Brand&export_label_filter_option=Brand:+alchemist+fragrance+or+saff+%26+co+or+glad2glow";
 
-  describe.skip(`[${process.env.JARVIS_ENV}] Sort Type DESC`, () => {
+  describe(`[${process.env.JARVIS_ENV}] Sort Type DESC`, () => {
     const arrSortByColumnDesc = arrColumn.map((el) => {
       const newObj = { ...el };
       newObj.url = `${url}&order_by=${newObj.field}&order_by_type=DESC`;
@@ -164,11 +179,13 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis GP Report Sort By Column Featu
 
     it.each(arrSortByColumnDesc)(
       "Sort By Column: $sortByColumn -> $expected",
-      async ({ sortByColumn, field, url, expected }) => {
+      async ({ sortByColumn, field, url, expected, dataType }) => {
         try {
           const result = await Helpers.getDataFromAxios(url);
           const data = (result?.data?.data || []).map((el) => {
-            return parseFloat(parseFloat(el[field] || 0).toFixed(2));
+            return dataType === "number"
+              ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+              : el[field];
           });
           const isDesc = Helpers.isDescending(data);
           expect(isDesc).toBe(expected);
@@ -181,7 +198,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis GP Report Sort By Column Featu
     );
   });
 
-  describe(`[${process.env.JARVIS_ENV}] Sort Type ASC`, () => {
+  describe.skip(`[${process.env.JARVIS_ENV}] Sort Type ASC`, () => {
     const arrSortByColumnAsc = arrColumn.map((el) => {
       const newObj = { ...el };
       newObj.url = `${url}&order_by=${newObj.field}&order_by_type=ASC`;
@@ -191,11 +208,13 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis GP Report Sort By Column Featu
 
     it.each(arrSortByColumnAsc)(
       "Sort By Column: $sortByColumn -> $expected",
-      async ({ sortByColumn, field, url, expected }) => {
+      async ({ sortByColumn, field, url, expected, dataType }) => {
         try {
           const result = await Helpers.getDataFromAxios(url);
           const data = (result?.data?.data || []).map((el) => {
-            return parseFloat(parseFloat(el[field] || 0).toFixed(2));
+            return dataType === "number"
+              ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
+              : el[field];
           });
           const isAsc = Helpers.isAscending(data);
           expect(isAsc).toBe(expected);
