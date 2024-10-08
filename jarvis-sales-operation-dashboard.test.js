@@ -197,6 +197,7 @@ describe.only(`[${process.env.JARVIS_ENV}] Test Concurrent Jarvis Sales Operatio
           "?period_type=monthly&value_type=net&value_mode=before_discount&active_in[]=sociolla&start_date=2024-09-01&end_date=2024-09-20&t=1725866750404&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10"
       );
       expect(result).toMatchObject(data);
+      expect(result).toHaveProperty("data.recordsTotal");
     } catch (e) {
       expect(e.message).toBe("Unable to fetch data platform");
     }
@@ -245,6 +246,7 @@ describe.only(`[${process.env.JARVIS_ENV}] Test Concurrent Jarvis Sales Operatio
           "?period_type=monthly&value_type=net&value_mode=before_discount&active_in[]=sociolla&start_date=2024-09-01&end_date=2024-09-20&t=1726554101568&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10&group_by=brand"
       );
       expect(result).toMatchObject(data);
+      expect(result).toHaveProperty("data.recordsTotal");
     } catch (e) {
       expect(e.message).toBe("Unable to fetch data top sales");
     }
@@ -261,6 +263,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Concurrent Jarvis Sales Operation Das
           "?order_platform[]=offline_store&store[]=6&period_type=monthly&value_type=net&value_mode=before_discount&business_unit=SRI&active_in[]=sociolla&order_type[]=On+Sale&brand_type=exclusive&start_date=2024-09-01&end_date=2024-09-20&t=1725956611452&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10&store_mongoid[]=5dde3513fdef3a0ce69f9600"
       );
       expect(result).toMatchObject(data);
+      expect(result).toHaveProperty("data.recordsTotal");
     } catch (e) {
       expect(e.message).toBe("Unable to fetch data platform");
     }
@@ -309,6 +312,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Concurrent Jarvis Sales Operation Das
           "?order_platform[]=offline_store&store[]=6&period_type=monthly&value_type=net&value_mode=before_discount&business_unit=SRI&active_in[]=sociolla&order_type[]=On+Sale&brand_type=exclusive&start_date=2024-09-01&end_date=2024-09-20&t=1725956611452&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10&store_mongoid[]=5dde3513fdef3a0ce69f9600&group_by=brand"
       );
       expect(result).toMatchObject(data);
+      expect(result).toHaveProperty("data.recordsTotal");
     } catch (e) {
       expect(e.message).toBe("Unable to fetch data top sales");
     }
@@ -325,6 +329,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Concurrent Jarvis Sales Operation Das
           "?period_type=monthly&value_type=net&value_mode=before_discount&business_unit=SRI&active_in[]=sociolla&start_date=2024-09-01&end_date=2024-09-20&t=1725873906342&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10"
       );
       expect(result).toMatchObject(data);
+      expect(result).toHaveProperty("data.recordsTotal");
     } catch (e) {
       expect(e.message).toBe("Unable to fetch data platform");
     }
@@ -373,6 +378,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Concurrent Jarvis Sales Operation Das
           "?period_type=monthly&value_type=net&value_mode=before_discount&business_unit=SRI&active_in[]=sociolla&start_date=2024-09-01&end_date=2024-09-20&t=1726554418498&start_date_compare=2024-08-01&end_date_compare=2024-08-20&skip=0&limit=10&group_by=brand"
       );
       expect(result).toMatchObject(data);
+      expect(result).toHaveProperty("data.recordsTotal");
     } catch (e) {
       expect(e.message).toBe("Unable to fetch data top sales");
     }
@@ -422,6 +428,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Sal
       async ({ sortByColumn, field, url, expected, dataType }) => {
         try {
           const result = await Helpers.getDataFromAxios(url);
+          expect(result).toHaveProperty("data.recordsTotal");
           const data = (result?.data?.data || []).map((el) => {
             return dataType === "number"
               ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
@@ -451,6 +458,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Sal
       async ({ sortByColumn, field, url, expected, dataType }) => {
         try {
           const result = await Helpers.getDataFromAxios(url);
+          expect(result).toHaveProperty("data.recordsTotal");
           const data = (result?.data?.data || []).map((el) => {
             return dataType === "number"
               ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
@@ -487,6 +495,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Sal
       async ({ sortByColumn, field, url, expected, dataType }) => {
         try {
           const result = await Helpers.getDataFromAxios(url);
+          expect(result).toHaveProperty("data.recordsTotal");
           const data = (result?.data?.data || []).map((el) => {
             return dataType === "number"
               ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
@@ -516,6 +525,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Sal
       async ({ sortByColumn, field, url, expected, dataType }) => {
         try {
           const result = await Helpers.getDataFromAxios(url);
+          expect(result).toHaveProperty("data.recordsTotal");
           const data = (result?.data?.data || []).map((el) => {
             return dataType === "number"
               ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
@@ -552,6 +562,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Sal
       async ({ sortByColumn, field, url, expected, dataType }) => {
         try {
           const result = await Helpers.getDataFromAxios(url);
+          expect(result).toHaveProperty("data.recordsTotal");
           const data = (result?.data?.data || []).map((el) => {
             return dataType === "number"
               ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
@@ -581,6 +592,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Sal
       async ({ sortByColumn, field, url, expected, dataType }) => {
         try {
           const result = await Helpers.getDataFromAxios(url);
+          expect(result).toHaveProperty("data.recordsTotal");
           const data = (result?.data?.data || []).map((el) => {
             return dataType === "number"
               ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
@@ -617,6 +629,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
       async ({ sortByColumn, field, url, expected, dataType }) => {
         try {
           const result = await Helpers.getDataFromAxios(url);
+          expect(result).toHaveProperty("data.recordsTotal");
           const data = (result?.data?.data || []).map((el) => {
             return dataType === "number"
               ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
@@ -646,6 +659,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
       async ({ sortByColumn, field, url, expected, dataType }) => {
         try {
           const result = await Helpers.getDataFromAxios(url);
+          expect(result).toHaveProperty("data.recordsTotal");
           const data = (result?.data?.data || []).map((el) => {
             return dataType === "number"
               ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
@@ -682,6 +696,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
       async ({ sortByColumn, field, url, expected, dataType }) => {
         try {
           const result = await Helpers.getDataFromAxios(url);
+          expect(result).toHaveProperty("data.recordsTotal");
           const data = (result?.data?.data || []).map((el) => {
             return dataType === "number"
               ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
@@ -711,6 +726,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
       async ({ sortByColumn, field, url, expected, dataType }) => {
         try {
           const result = await Helpers.getDataFromAxios(url);
+          expect(result).toHaveProperty("data.recordsTotal");
           const data = (result?.data?.data || []).map((el) => {
             return dataType === "number"
               ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
@@ -747,6 +763,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
       async ({ sortByColumn, field, url, expected, dataType }) => {
         try {
           const result = await Helpers.getDataFromAxios(url);
+          expect(result).toHaveProperty("data.recordsTotal");
           const data = (result?.data?.data || []).map((el) => {
             return dataType === "number"
               ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
@@ -776,6 +793,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
       async ({ sortByColumn, field, url, expected, dataType }) => {
         try {
           const result = await Helpers.getDataFromAxios(url);
+          expect(result).toHaveProperty("data.recordsTotal");
           const data = (result?.data?.data || []).map((el) => {
             return dataType === "number"
               ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
@@ -812,6 +830,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
       async ({ sortByColumn, field, url, expected, dataType }) => {
         try {
           const result = await Helpers.getDataFromAxios(url);
+          expect(result).toHaveProperty("data.recordsTotal");
           const data = (result?.data?.data || []).map((el) => {
             return dataType === "number"
               ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
@@ -841,6 +860,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
       async ({ sortByColumn, field, url, expected, dataType }) => {
         try {
           const result = await Helpers.getDataFromAxios(url);
+          expect(result).toHaveProperty("data.recordsTotal");
           const data = (result?.data?.data || []).map((el) => {
             return dataType === "number"
               ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
@@ -877,6 +897,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
       async ({ sortByColumn, field, url, expected, dataType }) => {
         try {
           const result = await Helpers.getDataFromAxios(url);
+          expect(result).toHaveProperty("data.recordsTotal");
           const data = (result?.data?.data || []).map((el) => {
             return dataType === "number"
               ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
@@ -906,6 +927,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
       async ({ sortByColumn, field, url, expected, dataType }) => {
         try {
           const result = await Helpers.getDataFromAxios(url);
+          expect(result).toHaveProperty("data.recordsTotal");
           const data = (result?.data?.data || []).map((el) => {
             return dataType === "number"
               ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
@@ -942,6 +964,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
       async ({ sortByColumn, field, url, expected, dataType }) => {
         try {
           const result = await Helpers.getDataFromAxios(url);
+          expect(result).toHaveProperty("data.recordsTotal");
           const data = (result?.data?.data || []).map((el) => {
             return dataType === "number"
               ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
@@ -971,6 +994,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
       async ({ sortByColumn, field, url, expected, dataType }) => {
         try {
           const result = await Helpers.getDataFromAxios(url);
+          expect(result).toHaveProperty("data.recordsTotal");
           const data = (result?.data?.data || []).map((el) => {
             return dataType === "number"
               ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
@@ -1007,6 +1031,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
       async ({ sortByColumn, field, url, expected, dataType }) => {
         try {
           const result = await Helpers.getDataFromAxios(url);
+          expect(result).toHaveProperty("data.recordsTotal");
           const data = (result?.data?.data || []).map((el) => {
             return dataType === "number"
               ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
@@ -1036,6 +1061,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
       async ({ sortByColumn, field, url, expected, dataType }) => {
         try {
           const result = await Helpers.getDataFromAxios(url);
+          expect(result).toHaveProperty("data.recordsTotal");
           const data = (result?.data?.data || []).map((el) => {
             return dataType === "number"
               ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
@@ -1072,6 +1098,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
       async ({ sortByColumn, field, url, expected, dataType }) => {
         try {
           const result = await Helpers.getDataFromAxios(url);
+          expect(result).toHaveProperty("data.recordsTotal");
           const data = (result?.data?.data || []).map((el) => {
             return dataType === "number"
               ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
@@ -1101,6 +1128,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
       async ({ sortByColumn, field, url, expected, dataType }) => {
         try {
           const result = await Helpers.getDataFromAxios(url);
+          expect(result).toHaveProperty("data.recordsTotal");
           const data = (result?.data?.data || []).map((el) => {
             return dataType === "number"
               ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
@@ -1137,6 +1165,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
       async ({ sortByColumn, field, url, expected, dataType }) => {
         try {
           const result = await Helpers.getDataFromAxios(url);
+          expect(result).toHaveProperty("data.recordsTotal");
           const data = (result?.data?.data || []).map((el) => {
             return dataType === "number"
               ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
@@ -1166,6 +1195,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
       async ({ sortByColumn, field, url, expected, dataType }) => {
         try {
           const result = await Helpers.getDataFromAxios(url);
+          expect(result).toHaveProperty("data.recordsTotal");
           const data = (result?.data?.data || []).map((el) => {
             return dataType === "number"
               ? parseFloat(parseFloat(el[field] || 0).toFixed(2))
