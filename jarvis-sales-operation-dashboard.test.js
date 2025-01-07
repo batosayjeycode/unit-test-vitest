@@ -8,7 +8,7 @@ const urlPeriod =
 const urlSalesContribution =
   "https://jarvis-api.sociolla.info/v2/sales-operation-dashboard/sales-contributions";
 const urlAovDistribution =
-  "https://jarvis-api.sociolla.info/v2/aov-distributions";
+  "https://jarvis-api.sociolla.info/v2/order-value-distributions";
 const urlTopSales = "https://jarvis-api.sociolla.info/v2/sales/top";
 const urlFootfall = "https://jarvis-api.sociolla.info/v2/footfalls";
 const urlNps = "https://jarvis-api.sociolla.info/v2/net-promotor-scores";
@@ -188,7 +188,7 @@ const arrColumnTopSales = [
 ];
 
 // With filter default
-describe.only(`[${process.env.JARVIS_ENV}] Test Concurrent Jarvis Sales Operation Dashboard, Filter: default`, () => {
+describe(`[${process.env.JARVIS_ENV}] Test Concurrent Jarvis Sales Operation Dashboard, Filter: default`, () => {
   it.concurrent("Fetch Data Platform", async ({ expect }) => {
     try {
       const data = { success: true };
@@ -320,7 +320,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Concurrent Jarvis Sales Operation Das
 });
 
 // business_unit: offline
-describe(`[${process.env.JARVIS_ENV}] Test Concurrent Jarvis Sales Operation Dashboard, Filter: business_unit offline`, () => {
+describe.only(`[${process.env.JARVIS_ENV}] Test Concurrent Jarvis Sales Operation Dashboard, Filter: business_unit offline`, () => {
   it.concurrent("Fetch Data Platform", async ({ expect }) => {
     try {
       const data = { success: true };
@@ -646,7 +646,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales Operation Dashboard, Top
     );
   });
 
-  describe.skip(`[${process.env.JARVIS_ENV}] Sort Type ASC`, () => {
+  describe(`[${process.env.JARVIS_ENV}] Sort Type ASC`, () => {
     const arrSortByColumnAsc = arrColumnTopSales.map((el) => {
       const newObj = { ...el };
       newObj.url = `${url}&order_by=${newObj.field}&order_by_type=ASC`;

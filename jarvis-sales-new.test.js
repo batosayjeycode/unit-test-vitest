@@ -1459,7 +1459,7 @@ describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales New Gift Card`, () => {
   });
 });
 
-describe.only(`[${process.env.JARVIS_ENV}] Test Jarvis Sales New Target Sales`, () => {
+describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales New Target Sales`, () => {
   describe(`[${process.env.JARVIS_ENV}] Filter Default With Group By: Brand`, () => {
     const url =
       "http://localhost:8989/v2/target-sales/brands?view_point=brand&value_mode=before_discount&value_type=gross&tax_mode=before-tax&period_type=yearly&data_display=qty&month=9&year=2024&start_date=2024-09-01&end_date=2024-09-27&skip=0&limit=10&tab=target-sales";
@@ -1710,7 +1710,7 @@ describe.only(`[${process.env.JARVIS_ENV}] Test Jarvis Sales New Target Sales`, 
   });
 });
 
-describe(`[${process.env.JARVIS_ENV}] Test Jarvis Sales New Monthly Sales Review`, () => {
+describe.only(`[${process.env.JARVIS_ENV}] Test Jarvis Sales New Monthly Sales Review`, () => {
   describe(`[${process.env.JARVIS_ENV}] Filter Default`, () => {
     const url =
       "http://localhost:8989/v2/monthly-sales-reviews?value_mode=before_discount&only_has_sales=1&value_type=gross&month=09&year=2024&brand_type=exclusive&skip=0&limit=10&tab=monthly-sales-review";
